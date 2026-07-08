@@ -1,131 +1,177 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - LearnLoop</title>
-
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/dashboard.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - LearnLoop</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon"></span>
-                <span>Learn<span>Loop</span></span>
-            </a>
-            <nav class="nav-menu">
-                <a href="explore.html">Explore</a>
-                <a href="dashboard.html">Dashboard</a>
-                <a href="requests.html">Requests</a>
-                <a href="chat.html">Messages</a>
-            </nav>
-            <div class="nav-actions">
-                <a href="profile.html" class="dashboard-avatar" aria-label="Go to my profile">JL</a>
-            </div>
+  <!-- Premium Loader Screen -->
+  <div id="loader-screen">
+    <div class="loader-logo">
+      <svg viewBox="0 0 44 24" width="56" height="32" fill="none">
+        <circle cx="14" cy="12" r="8" stroke="#8b5cf6" stroke-width="3" />
+        <circle cx="27" cy="12" r="8" stroke="#94a3b8" stroke-width="3" stroke-opacity="0.8" />
+      </svg>
+      <span>LearnLoop</span>
+    </div>
+    <div class="loader-ring"></div>
+  </div>
+
+  <div class="glowing-blob blob-purple"></div>
+  <div class="glowing-blob blob-cyan"></div>
+
+  <!-- Dashboard Main Layout -->
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar Container -->
+    <div id="sidebar-container"></div>
+    
+    <!-- Main Content Panel -->
+    <main class="main-content">
+      
+      <!-- Page Header -->
+      <header class="page-header">
+        <div class="page-title">
+          <h1 id="user-greeting">Welcome, User!</h1>
+          <p>Here is your learning & teaching barter summary for today.</p>
         </div>
-    </header>
-
-    <main class="dashboard-view">
-        <div class="dashboard-container">
-
-            <section class="welcome-banner">
-                <h1>Welcome back, Learner!</h1>
-                <p>Ready to complete your learning loop today?</p>
-            </section>
-
-            <section class="stats-grid">
-                <div class="stat-card">
-                    <h3>Total Offered</h3>
-                    <div class="stat-number" data-target="4">0</div>
-                    <p>Skills you teach</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Total Wanted</h3>
-                    <div class="stat-number" data-target="3">0</div>
-                    <p>Skills you learn</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Exchanges</h3>
-                    <div class="stat-number" data-target="12">0</div>
-                    <p>Completed sessions</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Average Rating</h3>
-                    <div class="stat-number" data-target="4.9">0</div>
-                    <p>Based on reviews</p>
-                </div>
-            </section>
-
-            <section class="analytics-grid">
-                <div class="chart-card">
-                    <h2>Session Activity</h2>
-                    <p class="chart-subtitle">Sessions completed over the last 6 months</p>
-                    <canvas id="sessionsChart" height="150"></canvas>
-                </div>
-                <div class="chart-card">
-                    <h2>Skill Balance</h2>
-                    <p class="chart-subtitle">Offered vs. wanted skills</p>
-                    <canvas id="balanceChart" height="150"></canvas>
-                    <div class="chart-legend">
-                        <span><span class="dot teach"></span>Offered</span>
-                        <span><span class="dot learn"></span>Wanted</span>
-                    </div>
-                </div>
-            </section>
-
-            <div class="dashboard-split">
-
-                <section class="badge-section">
-                    <h2>Achievements & Badges</h2>
-                    <div class="badge-grid">
-                        <div class="badge-item">
-                            <div class="badge-icon">🏅</div>
-                            <h4>Top Teacher</h4>
-                        </div>
-                        <div class="badge-item">
-                            <div class="badge-icon">⚡</div>
-                            <h4>Active Learner</h4>
-                        </div>
-                        <div class="badge-item">
-                            <div class="badge-icon">🤝</div>
-                            <h4>Skill Master</h4>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="history-section">
-                    <h2>Recent Learning History</h2>
-                    <div class="history-list">
-                        <div class="history-item">
-                            <div class="history-details">
-                                <h4>UI/UX Design Fundamentals</h4>
-                                <p>Taught by Sarah K. • 1 hour session</p>
-                            </div>
-                            <span class="status-tag tag-success">Learned</span>
-                        </div>
-                        <div class="history-item">
-                            <div class="history-details">
-                                <h4>Introduction to Python</h4>
-                                <p>Taught to Alex M. • 2 hour session</p>
-                            </div>
-                            <span class="status-tag tag-primary">Taught</span>
-                        </div>
-                    </div>
-                </section>
-
-            </div>
-
+        
+        <div class="header-actions">
+          <a href="explore.html" class="btn btn-primary btn-glow">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            Find Matches
+          </a>
         </div>
+      </header>
+      
+      <!-- Metrics Overview row -->
+      <section class="overview-grid">
+        <div class="overview-card glass-card">
+          <div class="card-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--indigo);">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <div class="card-info">
+            <h3 id="stat-offered">0</h3>
+            <p>Skills Offered</p>
+          </div>
+        </div>
+
+        <div class="overview-card glass-card">
+          <div class="card-icon" style="background: rgba(124, 58, 237, 0.1); color: var(--purple);">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <div class="card-info">
+            <h3 id="stat-wanted">0</h3>
+            <p>Skills Wanted</p>
+          </div>
+        </div>
+
+        <div class="overview-card glass-card">
+          <div class="card-icon" style="background: rgba(6, 182, 212, 0.1); color: var(--cyan);">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+          </div>
+          <div class="card-info">
+            <h3 id="stat-requests">0</h3>
+            <p>Active Requests</p>
+          </div>
+        </div>
+
+        <div class="overview-card glass-card">
+          <div class="card-icon" style="background: rgba(20, 184, 166, 0.1); color: var(--teal);">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          </div>
+          <div class="card-info">
+            <h3 id="stat-sessions">0</h3>
+            <p>Completed Hours</p>
+          </div>
+        </div>
+
+        <div class="overview-card glass-card">
+          <div class="card-icon" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.36 1.252.588 1.81l-3.97 2.883a1 1 0 00-.364 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.971-2.883a1 1 0 00-1.18 0l-3.97 2.883c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.364-1.118l-3.97-2.883c-.783-.57-.38-1.81.588-1.81h4.907a1 1 0 00.95-.69l1.519-4.674z"/></svg>
+          </div>
+          <div class="card-info">
+            <h3 id="stat-rating">5.0</h3>
+            <p>Average Rating</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Primary Dashboard Content Grid -->
+      <div class="main-dashboard-grid">
+        
+        <!-- Left Side (Activity Chart & Calendar Highlights) -->
+        <div class="dashboard-left-col">
+          
+          <!-- Activity Graph Card -->
+          <div class="chart-card glass-card">
+            <div class="card-header-row">
+              <h3>Learning vs Teaching Hours</h3>
+              <div class="chart-legends">
+                <span class="legend-teach">Teaching</span>
+                <span class="legend-learn">Learning</span>
+              </div>
+            </div>
+            <div class="chart-content" id="activity-chart">
+              <!-- Inline Dynamic SVG Chart rendered here -->
+            </div>
+          </div>
+          
+          <!-- Upcoming Sessions list -->
+          <div class="sessions-card glass-card">
+            <h3>Upcoming Sessions</h3>
+            <div class="sessions-list" id="dashboard-sessions-list">
+              <!-- Scheduled slots rendered dynamically -->
+              <div class="empty-state">
+                <svg width="32" height="32" fill="none" stroke="var(--text-muted)" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                <p>No upcoming sessions booked.</p>
+                <a href="requests.html" class="btn btn-secondary" style="margin-top: 10px;">Book a Session</a>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+        <!-- Right Side (Conversations, Notifications, Badges) -->
+        <div class="dashboard-right-col">
+          
+          <!-- Recent Conversations -->
+          <div class="recent-messages-card glass-card">
+            <h3>Active Exchanges</h3>
+            <div class="messages-list" id="dashboard-chats-list">
+              <!-- Chat list snippets rendered dynamically -->
+            </div>
+          </div>
+          
+          <!-- Badges shelf -->
+          <div class="badges-shelf-card glass-card">
+            <h3>Earned Achievements</h3>
+            <div class="badges-shelf" id="dashboard-badges-shelf">
+              <!-- Badge cards showing colored or grays scale based on unlock -->
+            </div>
+          </div>
+
+          <!-- Recent Notifications -->
+          <div class="recent-notif-card glass-card">
+            <h3>Recent System Alerts</h3>
+            <div class="dashboard-notif-list" id="dashboard-notifications-list">
+              <!-- System notifications lists -->
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
     </main>
+    
+  </div>
 
-    <footer class="footer">
-        <p>&copy; 2026 LearnLoop Platform. Built for community learning.</p>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
-    <script src="js/dashboard.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/dashboard.js"></script>
 </body>
 </html>

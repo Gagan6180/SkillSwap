@@ -1,91 +1,202 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exchange Requests - LearnLoop</title>
-
-    <!-- Verified Path Links -->
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/requests.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Requests & Schedule - LearnLoop</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/requests.css">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon"></span>
-                <span>Learn<span>Loop</span></span>
-            </a>
-            <nav class="nav-menu">
-                <a href="explore.html">Explore</a>
-                <a href="dashboard.html">Dashboard</a>
-                <a href="requests.html">Requests</a>
-                <a href="chat.html">Messages</a>
-            </nav>
-            <div class="nav-actions">
-                <span class="dashboard-avatar">JL</span>
+  <!-- Premium Loader Screen -->
+  <div id="loader-screen">
+    <div class="loader-logo">
+      <svg viewBox="0 0 44 24" width="56" height="32" fill="none">
+        <circle cx="14" cy="12" r="8" stroke="#8b5cf6" stroke-width="3" />
+        <circle cx="27" cy="12" r="8" stroke="#94a3b8" stroke-width="3" stroke-opacity="0.8" />
+      </svg>
+      <span>LearnLoop</span>
+    </div>
+    <div class="loader-ring"></div>
+  </div>
+
+  <div class="glowing-blob blob-purple"></div>
+  <div class="glowing-blob blob-cyan"></div>
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Page Header -->
+      <header class="page-header">
+        <div class="page-title">
+          <h1>Request Center & Calendar</h1>
+          <p>Manage skill exchange proposals, book times, and rate completed barters.</p>
+        </div>
+      </header>
+      
+      <!-- Double Column Layout -->
+      <div class="requests-grid">
+        
+        <!-- Left Side: Requests tabs -->
+        <div class="requests-left-col">
+          
+          <div class="glass-card tab-panel-card">
+            
+            <!-- Tab Headers -->
+            <div class="tab-headers-row">
+              <button class="tab-btn active" data-tab="incoming">Incoming Requests</button>
+              <button class="tab-btn" data-tab="outgoing">Sent Proposals</button>
+              <button class="tab-btn" data-tab="history">Exchange History</button>
             </div>
+            
+            <!-- Tab Content lists -->
+            <div class="tab-content active" id="incoming-tab">
+              <!-- Render Incoming requests -->
+            </div>
+            
+            <div class="tab-content" id="outgoing-tab">
+              <!-- Render Outgoing proposals -->
+            </div>
+
+            <div class="tab-content" id="history-tab">
+              <!-- Render History exchanges -->
+            </div>
+            
+          </div>
+          
         </div>
-    </header>
-
-    <main class="requests-view">
-        <div class="requests-container">
-
-            <section class="requests-box">
-                <h2>Skill Exchange Requests</h2>
-
-                <div class="requests-tabs">
-                    <button class="tab-btn active" data-tab="pending">Pending <span class="tab-count" id="count-pending">0</span></button>
-                    <button class="tab-btn" data-tab="accepted">Accepted <span class="tab-count" id="count-accepted">0</span></button>
-                    <button class="tab-btn" data-tab="rejected">Rejected <span class="tab-count" id="count-rejected">0</span></button>
-                </div>
-
-                <div class="requests-list" id="requests-list">
-                    <!-- Request cards are rendered here by requests.js -->
-                </div>
-
-                <p class="empty-state" id="empty-state" hidden>Nothing here yet.</p>
-            </section>
-
-            <section class="scheduler-modal-box">
-                <h3>Schedule Learning Session</h3>
-                <p>Select your preferred date and time, then attach a Google Meet link so both of you can join straight from your confirmation.</p>
-
-                <form class="scheduler-form" id="scheduler-form">
-                    <div class="form-group">
-                        <label for="session-date">Preferred Date</label>
-                        <input type="date" id="session-date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="session-time">Preferred Time</label>
-                        <input type="time" id="session-time" required>
-                    </div>
-
-                    <div class="form-group meet-group">
-                        <label for="meet-link">Google Meet Link</label>
-                        <div class="meet-input-row">
-                            <input type="url" id="meet-link" placeholder="https://meet.google.com/abc-defg-hij">
-                            <button type="button" class="btn btn-outline btn-generate" id="generate-meet-link">Generate</button>
-                        </div>
-                        <span class="field-hint" id="meet-link-hint">Paste an existing link or generate a placeholder one.</span>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-full">Confirm Session Block</button>
-                </form>
-
-                <div class="confirmed-sessions" id="confirmed-sessions">
-                    <!-- Confirmed sessions rendered here by requests.js -->
-                </div>
-            </section>
-
+        
+        <!-- Right Side: Calendar & Upcoming sessions lists -->
+        <div class="requests-right-col">
+          
+          <!-- Calendar Card -->
+          <div class="calendar-card glass-card">
+            <div class="calendar-header">
+              <button class="btn-cal-nav" id="prev-month">&larr;</button>
+              <h3 id="calendar-month-year" style="margin-bottom:0;">July 2026</h3>
+              <button class="btn-cal-nav" id="next-month">&rarr;</button>
+            </div>
+            
+            <!-- Days grid headers -->
+            <div class="calendar-days-hdr">
+              <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+            </div>
+            
+            <!-- Days numbers cells -->
+            <div class="calendar-grid-cells" id="calendar-days-cells">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+          
+          <!-- Sessions agenda for selected day -->
+          <div class="glass-card agenda-card">
+            <h3>Schedule Agenda</h3>
+            <div id="agenda-selected-date" style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Click a calendar cell to view sessions...</div>
+            <div class="agenda-list" id="agenda-sessions-list">
+              <!-- Agenda list -->
+            </div>
+          </div>
+          
         </div>
+        
+      </div>
+      
     </main>
+    
+  </div>
 
-    <footer class="footer">
-        <p>&copy; 2026 LearnLoop Platform. Built for community learning.</p>
-    </footer>
+  <!-- Modal Booking Schedule Overlay -->
+  <div class="modal-overlay" id="booking-modal">
+    <div class="modal-container glass-card">
+      <div class="modal-header">
+        <span class="modal-title">Book Skill Barter Session</span>
+        <span class="modal-close" id="close-booking-modal">&times;</span>
+      </div>
+      <form id="booking-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="book-partner-select">Exchange Partner</label>
+            <select class="form-control" id="book-partner-select" required>
+              <!-- Accepted partners options -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="book-topic">Barter Topic</label>
+            <input type="text" class="form-control" id="book-topic" required placeholder="e.g. Practicing CSS grid & flex, Python loop structures">
+          </div>
+          <div class="form-group-row" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="form-group">
+              <label class="form-label" for="book-date">Selected Date</label>
+              <input type="date" class="form-control" id="book-date" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="book-time">Session Time</label>
+              <input type="time" class="form-control" id="book-time" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="book-timezone">Timezone</label>
+            <select class="form-control" id="book-timezone">
+              <option value="GMT">GMT (UTC+0)</option>
+              <option value="EST">EST (UTC-5)</option>
+              <option value="PST">PST (UTC-8)</option>
+              <option value="IST">IST (UTC+5:30)</option>
+              <option value="JST">JST (UTC+9)</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancel-booking-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-glow">Book Slot</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-    <script src="js/requests.js"></script>
+  <!-- Modal Ratings Review Feedback Overlay -->
+  <div class="modal-overlay" id="review-modal">
+    <div class="modal-container glass-card">
+      <div class="modal-header">
+        <span class="modal-title">Rate & Review Exchange</span>
+        <span class="modal-close" id="close-review-modal">&times;</span>
+      </div>
+      <form id="review-form">
+        <!-- Hidden status references -->
+        <input type="hidden" id="review-session-id">
+        
+        <div class="modal-body">
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px;">Congratulations on completing your skill barter session! How was your experience learning with this partner?</p>
+          
+          <div class="star-rating-interactive">
+            <span class="star-interactive" data-val="1">★</span>
+            <span class="star-interactive" data-val="2">★</span>
+            <span class="star-interactive" data-val="3">★</span>
+            <span class="star-interactive" data-val="4">★</span>
+            <span class="star-interactive" data-val="5">★</span>
+          </div>
+          <input type="hidden" id="review-rating-score" value="5" required>
+          
+          <div class="form-group" style="margin-top:20px;">
+            <label class="form-label" for="review-feedback-msg">Written Feedback</label>
+            <textarea class="form-control" id="review-feedback-msg" rows="4" style="resize:none;" required placeholder="Write a short review about what you learned, what was helpful, and feedback..."></textarea>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancel-review-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-glow">Submit Feedback</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/theme.js"></script>
+  <script src="js/requests.js"></script>
 </body>
 </html>

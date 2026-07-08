@@ -1,0 +1,323 @@
+/* Dedicated Community Feed Stylesheet */
+
+.feed-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.feed-main-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.feed-side-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Quick Post Share box like LinkedIn */
+.quick-share-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.quick-share-box:hover {
+  background: var(--bg-tertiary);
+  border-color: rgba(6, 182, 212, 0.2);
+}
+
+.quick-share-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.quick-share-avatar svg, .quick-share-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.quick-share-input {
+  flex-grow: 1;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.btn-share-photo {
+  background: none;
+  border: none;
+  color: var(--cyan);
+  font-size: 13.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn-share-photo:hover {
+  transform: scale(1.05);
+}
+
+/* Community Feed list */
+.activity-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.activity-post-card {
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 18px;
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: slideUp 0.3s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+.post-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.post-author-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-author-avatar svg, .post-author-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.post-author-details {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.post-author-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.post-author-headline {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+.post-time {
+  font-size: 11px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.post-caption-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* Photo illustration containers styling */
+.post-photo-box {
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Gradient background types */
+.photo-study {
+  background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+}
+.photo-certificate {
+  background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
+}
+.photo-whiteboard {
+  background: linear-gradient(135deg, #072e33 0%, #0c3e44 100%);
+}
+.photo-workspace {
+  background: linear-gradient(135deg, #1c1917 0%, #292524 100%);
+}
+
+.post-photo-box svg {
+  width: 100%;
+  height: 100%;
+  max-width: 340px;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+}
+
+/* Reactions counts row */
+.post-reactions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.likes-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.likes-indicator span {
+  font-size: 12px;
+}
+
+/* Action button trigger row */
+.post-actions-row {
+  display: flex;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.btn-post-action {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-post-action:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.btn-post-action.liked {
+  color: var(--cyan);
+  background: rgba(6, 182, 212, 0.05);
+}
+
+/* Share post modal photo select options */
+.photo-select-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.photo-option {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.01);
+  transition: all 0.3s;
+}
+
+.photo-option:hover {
+  border-color: var(--purple);
+  background: rgba(255,255,255,0.03);
+}
+
+.photo-option.active {
+  border-color: var(--cyan);
+  background: rgba(6, 182, 212, 0.05);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.2);
+}
+
+.photo-option-icon {
+  font-size: 24px;
+  display: block;
+}
+
+.photo-option-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.photo-option.active .photo-option-label {
+  color: var(--text-primary);
+}
+
+.widget-card {
+  padding: 18px;
+  border-radius: 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.widget-card h4 {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 992px) {
+  .feed-grid {
+    grid-template-columns: 1fr;
+  }
+}

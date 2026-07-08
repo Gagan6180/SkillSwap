@@ -1,199 +1,276 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile - LearnLoop</title>
-
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/profile.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - LearnLoop</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon"></span>
-                <span>Learn<span>Loop</span></span>
-            </a>
-            <nav class="nav-menu">
-                <a href="explore.html">Explore</a>
-                <a href="dashboard.html">Dashboard</a>
-                <a href="requests.html">Requests</a>
-                <a href="chat.html">Messages</a>
-            </nav>
-            <div class="nav-actions">
-                <a href="profile.html" class="dashboard-avatar" aria-label="Go to my profile">JL</a>
+  <!-- Premium Loader Screen -->
+  <div id="loader-screen">
+    <div class="loader-logo">
+      <svg viewBox="0 0 44 24" width="56" height="32" fill="none">
+        <circle cx="14" cy="12" r="8" stroke="#8b5cf6" stroke-width="3" />
+        <circle cx="27" cy="12" r="8" stroke="#94a3b8" stroke-width="3" stroke-opacity="0.8" />
+      </svg>
+      <span>LearnLoop</span>
+    </div>
+    <div class="loader-ring"></div>
+  </div>
+
+  <div class="glowing-blob blob-purple"></div>
+  <div class="glowing-blob blob-cyan"></div>
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- LinkedIn style Header Card -->
+      <section class="linkedin-card header-card glass-card" style="padding: 0; overflow: hidden; border-radius: 20px; margin-bottom: 28px;">
+        <div class="profile-banner"></div>
+        <div class="profile-header-details">
+          
+          <div class="profile-avatar-container" id="profile-avatar">
+            <!-- SVG Avatar dynamically injected -->
+          </div>
+          
+          <div class="profile-info-block">
+            <div class="profile-name-row">
+              <h2 id="profile-display-name">Loading Profile...</h2>
+              <span class="pro-badge">PRO</span>
             </div>
+            
+            <!-- Professional Headline like LinkedIn -->
+            <p id="profile-display-headline" class="profile-headline-text">Senior UX Lead | Figma Design System Specialist</p>
+            
+            <div class="connections-row">
+              <span id="profile-display-location">Prague, Czech Republic</span>
+              <span class="divider-dot">&bull;</span>
+              <span id="profile-display-connections" class="connections-count">42 exchanges &bull; 500+ connections</span>
+            </div>
+            
+            <div class="profile-cta-row">
+              <button class="btn btn-primary btn-glow open-barter-btn">Open to Exchange</button>
+              <button class="btn btn-secondary share-post-trigger-btn" id="create-post-trigger">Share learning moment</button>
+              <button class="btn btn-secondary btn-icon edit-profile-trigger" id="edit-profile-btn" title="Edit Profile Details">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+              </button>
+            </div>
+          </div>
+          
         </div>
-    </header>
-
-    <main class="profile-view">
-        <div class="profile-container">
-
-            <!-- IDENTITY CARD: photo, name, headline, location -->
-            <section class="profile-card identity-card" id="identity-card">
-                <div class="identity-card-topbar">
-                    <button type="button" class="btn btn-outline btn-edit-toggle" id="edit-profile-btn">
-                        <span class="edit-icon">✎</span> Edit Profile
-                    </button>
-                </div>
-                <div class="identity-layout">
-                    <div class="photo-upload">
-                        <div class="photo-frame" id="photo-frame">
-                            <span class="photo-placeholder" id="photo-placeholder">JL</span>
-                            <img id="photo-preview" alt="Profile photo" hidden>
-                        </div>
-                        <label for="photo-input" class="btn btn-outline btn-photo" id="photo-label">Change photo</label>
-                        <input type="file" id="photo-input" accept="image/*" hidden>
-                        <button type="button" class="link-btn" id="photo-remove" hidden>Remove photo</button>
-                    </div>
-
-                    <form class="identity-form">
-                        <div class="identity-form-grid">
-                            <div class="form-group">
-                                <label for="full-name">Full Name</label>
-                                <input type="text" id="full-name" placeholder="Jordan Lee" value="Jordan Lee" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="headline">Headline</label>
-                                <input type="text" id="headline" placeholder="e.g., Product Designer teaching UI/UX, learning Python" value="Product Designer · Teaching UI/UX &amp; Figma" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="location">Location</label>
-                                <input type="text" id="location" placeholder="City, Country" value="Guwahati, India" readonly>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="identity-save-btn">Save Profile Info</button>
-                    </form>
-                </div>
-            </section>
-
-            <!-- BIO -->
-            <section class="profile-card">
-                <h2>About</h2>
-                <form class="profile-form">
-                    <div class="form-group">
-                        <label for="bio">Short Bio</label>
-                        <textarea id="bio" rows="4" placeholder="Tell the community about yourself, your background, and your learning goals..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save Bio</button>
-                </form>
-            </section>
-
-            <!-- SKILLS -->
-            <div class="skill-management-grid">
-
-                <section class="skill-box offered">
-                    <h3>Skills Offered (To Teach)</h3>
-                    <form class="add-skill-form">
-                        <input type="text" placeholder="e.g., Web Development" required>
-                        <select required>
-                            <option value="Beginner">Beginner</option>
-                            <option value="Intermediate">Intermediate</option>
-                            <option value="Expert">Expert</option>
-                        </select>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </form>
-
-                    <ul class="managed-skills-list">
-                        <li>
-                            <span>UI/UX Design — <span class="level-pill expert">Expert</span></span>
-                            <button type="button" class="remove-skill-btn" aria-label="Remove UI/UX Design">&times;</button>
-                        </li>
-                        <li>
-                            <span>Figma — <span class="level-pill expert">Expert</span></span>
-                            <button type="button" class="remove-skill-btn" aria-label="Remove Figma">&times;</button>
-                        </li>
-                    </ul>
-                </section>
-
-                <section class="skill-box wanted">
-                    <h3>Skills Wanted (To Learn)</h3>
-                    <form class="add-skill-form">
-                        <input type="text" placeholder="e.g., French Language" required>
-                        <select required>
-                            <option value="Beginner">Beginner</option>
-                            <option value="Intermediate">Intermediate</option>
-                            <option value="Expert">Expert</option>
-                        </select>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </form>
-
-                    <ul class="managed-skills-list">
-                        <li>
-                            <span>Python — <span class="level-pill beginner">Beginner</span></span>
-                            <button type="button" class="remove-skill-btn" aria-label="Remove Python">&times;</button>
-                        </li>
-                    </ul>
-                </section>
-
+      </section>
+      
+      <!-- Main Columns -->
+      <div class="profile-grid">
+        
+        <!-- Left column: About, Activity, Experience -->
+        <div class="profile-left-column">
+          
+          <!-- About/Summary Card -->
+          <div class="linkedin-card glass-card">
+            <h3>About Summary</h3>
+            <p id="profile-display-bio" class="profile-bio-text">Loading bio details...</p>
+            <div class="availability-info-row" style="margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border-color); font-size:13.5px;">
+              <strong>Availability Status:</strong> <span id="profile-display-availability" style="color:var(--cyan); font-weight:600;">Flexible Hours</span>
             </div>
+          </div>
 
-            <!-- EXPERIENCE + EDUCATION -->
-            <div class="skill-management-grid">
 
-                <section class="skill-box experience" data-entry-type="experience">
-                    <h3>Experience</h3>
-                    <form class="add-entry-form">
-                        <input type="text" data-field="title" placeholder="Role, e.g., Product Designer" required>
-                        <input type="text" data-field="subtitle" placeholder="Company" required>
-                        <input type="text" data-field="meta" placeholder="e.g., 2023 – Present">
-                        <textarea data-field="description" rows="2" placeholder="What did you work on?"></textarea>
-                        <button type="submit" class="btn btn-primary btn-full">Add Experience</button>
-                    </form>
-                    <ul class="managed-entries-list" data-list="experience"></ul>
-                </section>
-
-                <section class="skill-box education" data-entry-type="education">
-                    <h3>Education</h3>
-                    <form class="add-entry-form">
-                        <input type="text" data-field="title" placeholder="Degree, e.g., B.Des Interaction Design" required>
-                        <input type="text" data-field="subtitle" placeholder="School / University" required>
-                        <input type="text" data-field="meta" placeholder="e.g., 2018 – 2022">
-                        <textarea data-field="description" rows="2" placeholder="Notes, honors, coursework..."></textarea>
-                        <button type="submit" class="btn btn-primary btn-full">Add Education</button>
-                    </form>
-                    <ul class="managed-entries-list" data-list="education"></ul>
-                </section>
-
+          <!-- Experience Card (Exchanges History styled as jobs) -->
+          <div class="linkedin-card glass-card">
+            <h3>Exchange Experience</h3>
+            <div class="experience-list" id="profile-experience-list">
+              <!-- Render completed sessions as job nodes -->
             </div>
-
-            <!-- CERTIFICATES + ACHIEVEMENTS -->
-            <div class="skill-management-grid">
-
-                <section class="skill-box certificates" data-entry-type="certificates">
-                    <h3>Certificates</h3>
-                    <form class="add-entry-form">
-                        <input type="text" data-field="title" placeholder="Certificate name" required>
-                        <input type="text" data-field="subtitle" placeholder="Issuing organization" required>
-                        <input type="text" data-field="meta" placeholder="Issued date, e.g., Jun 2025">
-                        <input type="url" data-field="link" placeholder="Credential URL (optional)">
-                        <button type="submit" class="btn btn-primary btn-full">Add Certificate</button>
-                    </form>
-                    <ul class="managed-entries-list" data-list="certificates"></ul>
-                </section>
-
-                <section class="skill-box achievements" data-entry-type="achievements">
-                    <h3>Achievements</h3>
-                    <form class="add-entry-form">
-                        <input type="text" data-field="title" placeholder="Achievement, e.g., Hackathon Winner" required>
-                        <input type="text" data-field="meta" placeholder="e.g., 2024">
-                        <textarea data-field="description" rows="2" placeholder="What made this stand out?"></textarea>
-                        <button type="submit" class="btn btn-primary btn-full">Add Achievement</button>
-                    </form>
-                    <ul class="managed-entries-list" data-list="achievements"></ul>
-                </section>
-
-            </div>
-
+          </div>
+          
         </div>
+        
+        <!-- Right column: Skills, Badges, Reviews -->
+        <div class="profile-right-column">
+          
+          <!-- Skills & Endorsements Card -->
+          <div class="linkedin-card glass-card">
+            <div class="card-header-row" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 16px;">
+              <h3 style="margin-bottom:0;">Skills & Endorsements</h3>
+              <div style="display:flex; gap:8px;">
+                <button class="btn btn-secondary btn-icon btn-sm" id="add-offered-skill-btn" title="Add Skill Offered">
+                  <span style="font-size:14px;">🎓</span>
+                </button>
+                <button class="btn btn-secondary btn-icon btn-sm" id="add-wanted-skill-btn" title="Add Skill Wanted">
+                  <span style="font-size:14px;">🔍</span>
+                </button>
+              </div>
+            </div>
+            
+            <div class="skills-block-section">
+              <h5 class="section-sub-title">Skills I teach</h5>
+              <div class="skills-chips-list" id="offered-chips-container">
+                <!-- Offered Chips -->
+              </div>
+            </div>
+            
+            <div class="skills-block-section" style="margin-top: 20px;">
+              <h5 class="section-sub-title">Skills I want to learn</h5>
+              <div class="skills-chips-list" id="wanted-chips-container">
+                <!-- Wanted Chips -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Achievements Card -->
+          <div class="linkedin-card glass-card">
+            <h3>Achievements Badges</h3>
+            <div class="profile-badges-grid" id="profile-badges-container">
+              <!-- Badges shelf -->
+            </div>
+          </div>
+
+          <!-- Recommendations and Reviews -->
+          <div class="linkedin-card glass-card">
+            <h3>Recommendations Feedback</h3>
+            
+            <div class="rating-summary-box">
+              <div class="rating-stars-large" id="avg-stars-container">★★★★★</div>
+              <div>
+                <h4 id="avg-rating-value">5.0 / 5.0</h4>
+                <p>From <span id="rating-review-count">1</span> recommendations</p>
+              </div>
+            </div>
+            
+            <div class="reviews-list" id="profile-reviews-list">
+              <!-- Reviews items -->
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
     </main>
+    
+  </div>
 
-    <footer class="footer">
-        <p>&copy; 2026 LearnLoop Platform. Built for community learning.</p>
-    </footer>
+  <!-- Modal Edit Profile Detail -->
+  <div class="modal-overlay" id="edit-profile-modal">
+    <div class="modal-container glass-card">
+      <div class="modal-header">
+        <span class="modal-title">Edit Profile Details</span>
+        <span class="modal-close" id="close-profile-modal">&times;</span>
+      </div>
+      <form id="edit-profile-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="edit-name">Display Name</label>
+            <input type="text" class="form-control" id="edit-name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="edit-headline">Professional Headline</label>
+            <input type="text" class="form-control" id="edit-headline" required placeholder="e.g. Senior UX Designer | HTML/CSS Mentor">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="edit-location">Location</label>
+            <input type="text" class="form-control" id="edit-location" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="edit-bio">Short Bio / About Summary</label>
+            <textarea class="form-control" id="edit-bio" rows="4" maxlength="350" style="resize: none;" placeholder="Explain your background..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="edit-avatar-url">Custom Profile Picture URL (Optional)</label>
+            <input type="url" class="form-control" id="edit-avatar-url" placeholder="Paste image link (overrides avatar style below)">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="edit-banner-url">Custom Cover Banner URL (Optional)</label>
+            <input type="url" class="form-control" id="edit-banner-url" placeholder="Paste banner image link">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Profile Avatar Style</label>
+            <div class="avatar-select-grid" style="display: flex; gap: 12px; margin-top: 8px;">
+              <label class="avatar-opt active" style="cursor:pointer; display:block;">
+                <input type="radio" name="edit-avatar-color" value="purple" checked style="display:none;">
+                <span class="avatar-opt-preview" style="display:block; width:36px; height:36px; border-radius:50%; border:2px solid transparent; background: linear-gradient(135deg, #4F46E5, #7C3AED);"></span>
+              </label>
+              <label class="avatar-opt" style="cursor:pointer; display:block;">
+                <input type="radio" name="edit-avatar-color" value="pink" style="display:none;">
+                <span class="avatar-opt-preview" style="display:block; width:36px; height:36px; border-radius:50%; border:2px solid transparent; background: linear-gradient(135deg, #EC4899, #8B5CF6);"></span>
+              </label>
+              <label class="avatar-opt" style="cursor:pointer; display:block;">
+                <input type="radio" name="edit-avatar-color" value="blue" style="display:none;">
+                <span class="avatar-opt-preview" style="display:block; width:36px; height:36px; border-radius:50%; border:2px solid transparent; background: linear-gradient(135deg, #3B82F6, #06B6D4);"></span>
+              </label>
+              <label class="avatar-opt" style="cursor:pointer; display:block;">
+                <input type="radio" name="edit-avatar-color" value="green" style="display:none;">
+                <span class="avatar-opt-preview" style="display:block; width:36px; height:36px; border-radius:50%; border:2px solid transparent; background: linear-gradient(135deg, #10B981, #3B82F6);"></span>
+              </label>
+              <label class="avatar-opt" style="cursor:pointer; display:block;">
+                <input type="radio" name="edit-avatar-color" value="orange" style="display:none;">
+                <span class="avatar-opt-preview" style="display:block; width:36px; height:36px; border-radius:50%; border:2px solid transparent; background: linear-gradient(135deg, #F59E0B, #EF4444);"></span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="edit-availability">Availability / Preferred Hours</label>
+            <select class="form-control" id="edit-availability">
+              <option value="Flexible Schedule">Flexible Schedule</option>
+              <option value="Weekends & Evenings">Weekends & Evenings</option>
+              <option value="Weekdays Afternoon">Weekdays Afternoon</option>
+              <option value="Weekdays 6 PM - 9 PM">Weekdays 6 PM - 9 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancel-profile-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-glow">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-    <script src="js/profile.js"></script>
+
+
+  <!-- Skill Modal -->
+  <div class="modal-overlay" id="skill-modal">
+    <div class="modal-container glass-card">
+      <div class="modal-header">
+        <span class="modal-title" id="skill-modal-title">Add Skill</span>
+        <span class="modal-close" id="close-skill-modal">&times;</span>
+      </div>
+      <form id="skill-form">
+        <div class="modal-body">
+          <input type="hidden" id="skill-type" value="offered">
+          <input type="hidden" id="skill-edit-index" value="-1">
+          
+          <div class="form-group">
+            <label class="form-label" for="skill-name-input">Skill Name</label>
+            <input type="text" class="form-control" id="skill-name-input" required placeholder="e.g. JavaScript, Figma, Python">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="skill-level-input">Proficiency Level</label>
+            <select class="form-control" id="skill-level-input">
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Expert">Expert</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancel-skill-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-glow" id="skill-submit-btn">Add Skill</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/theme.js"></script>
+  <script src="js/profile.js"></script>
 </body>
 </html>

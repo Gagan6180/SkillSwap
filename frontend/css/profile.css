@@ -1,519 +1,705 @@
-@keyframes fade-up {
-    from { opacity: 0; transform: translateY(14px); }
-    to   { opacity: 1; transform: translateY(0); }
+/* Redesigned Profile Styles - LinkedIn Aesthetic */
+
+/* LinkedIn-style Header Card */
+.linkedin-card {
+  margin-bottom: 24px;
 }
 
-@keyframes pop-in {
-    from { opacity: 0; transform: scale(0.9) translateY(6px); }
-    to   { opacity: 1; transform: scale(1) translateY(0); }
+.profile-banner {
+  height: 200px;
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--purple) 50%, var(--teal) 100%);
+  background-size: 200% auto;
+  animation: gradientPan 8s linear infinite;
+  position: relative;
 }
 
-.profile-view {
-    background-color: var(--background-accent);
-    min-height: calc(100vh - 9rem);
-    padding: 3rem 1.5rem;
+.profile-header-details {
+  display: flex;
+  padding: 0 28px 28px;
+  margin-top: -65px;
+  position: relative;
+  z-index: 10;
+  gap: 24px;
+  align-items: flex-end;
 }
 
-.profile-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
+.profile-avatar-container {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 4px solid var(--bg-primary);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.profile-avatar-container:hover {
+  transform: scale(1.02);
+}
+
+.profile-avatar-container svg {
+  width: 100%;
+  height: 100%;
+}
+
+.profile-info-block {
+  flex-grow: 1;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-name-row h2 {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.pro-badge {
+  background: var(--grad-cyan-teal);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 10px rgba(20, 184, 166, 0.3);
+}
+
+.profile-headline-text {
+  font-size: 15px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.connections-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.connections-row #profile-display-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.connections-count {
+  color: var(--cyan);
+}
+
+.profile-cta-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+  align-items: center;
+}
+
+/* Profile private grid layout */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.profile-left-column, .profile-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.linkedin-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: var(--text-primary);
+}
+
+.profile-bio-text {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Quick Post Share box like LinkedIn */
+.quick-share-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.01);
+  margin-bottom: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.quick-share-box:hover {
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(124, 58, 237, 0.2);
+}
+
+.quick-share-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--purple);
+}
+
+.quick-share-avatar svg {
+  width: 100%;
+  height: 100%;
+}
+
+.quick-share-input {
+  flex-grow: 1;
+  color: var(--text-muted);
+  font-size: 13.5px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.btn-share-photo {
+  background: none;
+  border: none;
+  color: var(--cyan);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn-share-photo:hover {
+  transform: scale(1.05);
+}
+
+/* Community Photo Posts Feed cards */
+.activity-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.activity-post-card {
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.005);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: slideUp 0.3s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+.post-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.post-author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.post-author-avatar svg {
+  width: 100%;
+  height: 100%;
+}
+
+.post-author-details {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.post-author-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.post-author-headline {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+.post-time {
+  font-size: 11px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.post-caption-text {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Photo illustration containers styling */
+.post-photo-box {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Gradient background types */
+.photo-study {
+  background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+}
+.photo-certificate {
+  background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
+}
+.photo-whiteboard {
+  background: linear-gradient(135deg, #072e33 0%, #0c3e44 100%);
+}
+.photo-workspace {
+  background: linear-gradient(135deg, #1c1917 0%, #292524 100%);
+}
+
+.post-photo-box svg {
+  width: 100%;
+  height: 100%;
+  max-width: 320px;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+}
+
+/* Reactions counts row */
+.post-reactions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.likes-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.likes-indicator span {
+  font-size: 12px;
+}
+
+/* Action button trigger row */
+.post-actions-row {
+  display: flex;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.btn-post-action {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-post-action:hover {
+  background: rgba(255,255,255,0.03);
+  color: var(--text-primary);
+}
+
+.btn-post-action.liked {
+  color: var(--cyan);
+  background: rgba(6, 182, 212, 0.05);
+}
+
+/* Share post modal photo select options */
+.photo-select-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.photo-option {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.01);
+  transition: all 0.3s;
+}
+
+.photo-option:hover {
+  border-color: var(--purple);
+  background: rgba(255,255,255,0.03);
+}
+
+.photo-option.active {
+  border-color: var(--cyan);
+  background: rgba(6, 182, 212, 0.05);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.2);
+}
+
+.photo-option-icon {
+  font-size: 24px;
+  display: block;
+}
+
+.photo-option-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.photo-option.active .photo-option-label {
+  color: var(--text-primary);
+}
+
+/* Experience job-like items list */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  padding-left: 16px;
+}
+
+.experience-list::before {
+  content: '';
+  position: absolute;
+  left: 32px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: var(--border-color);
+}
+
+.experience-item {
+  display: flex;
+  gap: 16px;
+  position: relative;
+}
+
+.exp-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: var(--grad-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.2);
+}
+
+.exp-details h4 {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.exp-details h5 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.exp-details p {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.exp-desc {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+/* Skills section styling modifications */
+.skills-block-section h5 {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.skills-chips-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid var(--border-color);
+  font-size: 12.5px;
+  font-weight: 500;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.skill-chip:hover {
+  border-color: var(--purple);
+  background: rgba(124, 58, 237, 0.05);
+}
+
+.skill-lvl-badge {
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.lvl-expert { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+.lvl-intermediate { background: rgba(6, 182, 212, 0.1); color: var(--cyan); }
+.lvl-beginner { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+
+.endorsements-lbl {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+  border-left: 1px solid var(--border-color);
+  padding-left: 6px;
+}
+
+.chip-actions {
+  display: flex;
+  align-items: center;
+}
+
+.skill-delete-btn {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.skill-delete-btn:hover {
+  color: #ef4444;
+}
+
+/* Badges Showcase Grid */
+.profile-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
+}
+
+.badge-card-full {
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.005);
+  transition: all 0.3s ease;
+}
+
+.badge-card-full.locked {
+  filter: grayscale(1);
+  opacity: 0.35;
+}
+
+.badge-card-full:hover {
+  transform: translateY(-2px);
+  border-color: rgba(6, 182, 212, 0.2);
+}
+
+.badge-icon-lg {
+  font-size: 32px;
+  margin-bottom: 6px;
+}
+
+.badge-card-full h5 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.badge-card-full p {
+  font-size: 9px;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+/* Recommendations and Reviews */
+.rating-summary-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+
+.rating-stars-large {
+  font-size: 26px;
+  color: #f59e0b;
+}
+
+.rating-summary-box h4 {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.rating-summary-box p {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.review-item-card {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.005);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.review-author {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.review-stars {
+  color: #f59e0b;
+  font-size: 10px;
+}
+
+.review-comment {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.review-date {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: 6px;
+}
+
+@media (max-width: 1024px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-banner {
+    height: 140px;
+  }
+  .profile-header-details {
     flex-direction: column;
-    gap: 2rem;
-}
-
-/* ---------- CARD ENTRANCE ---------- */
-.profile-card,
-.skill-box {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    opacity: 0;
-    animation: fade-up 0.5s ease forwards;
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.profile-card:hover,
-.skill-box:hover {
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
-}
-
-.skill-management-grid .skill-box:nth-child(1) { animation-delay: 0.08s; }
-.skill-management-grid .skill-box:nth-child(2) { animation-delay: 0.16s; }
-
-.profile-card h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.6rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.02em;
-}
-
-.skill-box h3 {
-    font-size: 1.1rem;
-    margin-bottom: 1.25rem;
-    color: var(--text-main);
-    display: flex;
     align-items: center;
-    gap: 0.55rem;
-}
-
-.skill-box h3::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-}
-
-.skill-box.offered h3::before { background: var(--teach); }
-.skill-box.wanted h3::before { background: var(--learn); }
-.skill-box.experience h3::before { background: var(--primary-color); }
-.skill-box.education h3::before { background: var(--learn); }
-.skill-box.certificates h3::before { background: var(--teach); }
-.skill-box.achievements h3::before { background: var(--primary-color); }
-
-/* ---------- IDENTITY CARD ---------- */
-.identity-card {
-    padding: 2rem;
-}
-
-.identity-card-topbar {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 1rem;
-}
-
-.btn-edit-toggle {
-    font-size: 0.85rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
-}
-
-.btn-edit-toggle.is-active {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: #ffffff;
-}
-
-.edit-icon { font-size: 0.9rem; }
-
-.identity-form input[readonly] {
-    background-color: var(--background-accent);
-    border-color: transparent;
-    color: var(--text-main);
-    cursor: default;
-}
-
-.identity-form input:not([readonly]) {
-    background-color: #ffffff;
-    border-color: rgba(0, 0, 0, 0.15);
-}
-
-.identity-layout {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-}
-
-.photo-upload {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-    flex-shrink: 0;
-    width: 140px;
-}
-
-.photo-frame {
-    width: 112px;
-    height: 112px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Fraunces', serif;
-    font-size: 2rem;
-    font-weight: 600;
-    overflow: hidden;
-    border: 3px solid #ffffff;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
-    position: relative;
-}
-
-.photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.btn-photo {
-    font-size: 0.8rem;
-    padding: 0.45rem 0.9rem;
-    width: 100%;
-    cursor: pointer;
-}
-
-.link-btn {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    font-size: 0.78rem;
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-}
-
-.link-btn:hover { color: var(--teach); }
-
-.identity-form {
-    flex: 1;
-}
-
-.identity-form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 1.25rem;
-}
-
-.identity-form-grid .form-group:nth-child(2) {
-    grid-column: 1 / -1;
-}
-
-.identity-form input[type="text"] {
-    width: 100%;
-    padding: 0.65rem 0.85rem;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 0.92rem;
-    outline: none;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.identity-form input[type="text"]:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.12);
-}
-
-.identity-form .btn {
-    margin-top: 1.25rem;
-}
-
-@media (max-width: 640px) {
-    .identity-layout { flex-direction: column; align-items: center; }
-    .identity-form-grid { grid-template-columns: 1fr; }
-    .identity-form { width: 100%; }
-}
-
-/* ---------- BIO FORM ---------- */
-.profile-form textarea {
-    width: 100%;
-    padding: 0.85rem 1rem;
-    font-size: 0.95rem;
-    font-family: inherit;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-    outline: none;
-    resize: vertical;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.profile-form textarea:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.12);
-}
-
-.char-count {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    text-align: right;
-    margin-top: 0.35rem;
-    transition: color 0.15s ease;
-}
-
-.char-count.near-limit { color: var(--teach); }
-
-.profile-card .btn {
-    margin-top: 1.25rem;
-    position: relative;
-    transition: background-color 0.18s ease, transform 0.15s ease, box-shadow 0.18s ease;
-}
-
-.profile-card .btn:hover {
-    box-shadow: 0 8px 20px rgba(0, 112, 243, 0.25);
-    transform: translateY(-1px);
-}
-
-.profile-card .btn.is-saved {
-    background-color: var(--learn);
-}
-
-/* ---------- GRIDS ---------- */
-.skill-management-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-}
-
-/* ---------- ADD SKILL FORM (existing, unchanged behavior) ---------- */
-.add-skill-form {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.add-skill-form input,
-.add-skill-form select {
-    padding: 0.65rem 0.85rem;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    outline: none;
-    font-family: inherit;
-    font-size: 0.9rem;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.add-skill-form input { flex: 2; }
-.add-skill-form select { flex: 1; background-color: #ffffff; }
-
-.add-skill-form input:focus,
-.add-skill-form select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.12);
-}
-
-.add-skill-form .btn {
-    padding: 0.65rem 1.1rem;
-    font-size: 0.88rem;
-    transition: background-color 0.18s ease, transform 0.15s ease;
-}
-
-.add-skill-form .btn:active { transform: scale(0.94); }
-
-.add-skill-form input.input-error,
-.add-entry-form input.input-error {
-    border-color: #e5484d;
-    animation: shake 0.35s ease;
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-6px); }
-    75% { transform: translateX(6px); }
-}
-
-/* ---------- ADD ENTRY FORM (experience / education / certificates / achievements) ---------- */
-.add-entry-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
-}
-
-.add-entry-form input,
-.add-entry-form textarea {
-    padding: 0.6rem 0.85rem;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    outline: none;
-    font-family: inherit;
-    font-size: 0.88rem;
-    width: 100%;
-    resize: vertical;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.add-entry-form input:focus,
-.add-entry-form textarea:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.12);
-}
-
-.add-entry-form .btn {
-    margin-top: 0.25rem;
-}
-
-/* ---------- SKILL LIST (existing) ---------- */
-.managed-skills-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.managed-skills-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    background-color: var(--background-accent);
-    border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    font-size: 0.95rem;
-    opacity: 0;
-    animation: fade-up 0.4s ease forwards;
-    transition: background-color 0.15s ease, opacity 0.25s ease, transform 0.25s ease, max-height 0.25s ease, margin 0.25s ease, padding 0.25s ease;
-    overflow: hidden;
-}
-
-.managed-skills-list li:nth-child(1) { animation-delay: 0.05s; }
-.managed-skills-list li:nth-child(2) { animation-delay: 0.12s; }
-.managed-skills-list li:nth-child(3) { animation-delay: 0.19s; }
-
-.managed-skills-list li:hover {
-    background-color: #f0f0f2;
-}
-
-.managed-skills-list li.is-new {
-    animation: pop-in 0.35s ease forwards;
-}
-
-.managed-skills-list li.is-removing {
-    opacity: 0;
-    transform: translateX(12px);
-    max-height: 0;
-    margin: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-.level-pill {
-    display: inline-block;
-    padding: 0.15rem 0.55rem;
-    border-radius: 100px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-}
-
-.level-pill.beginner { background: rgba(0, 0, 0, 0.06); color: var(--text-muted); }
-.level-pill.intermediate { background: rgba(0, 168, 150, 0.12); color: var(--learn); }
-.level-pill.expert { background: rgba(255, 90, 60, 0.12); color: var(--teach); }
-
-.remove-skill-btn {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    font-size: 1.25rem;
-    cursor: pointer;
-    line-height: 1;
-    transition: color 0.15s ease, transform 0.2s ease;
-    flex-shrink: 0;
-}
-
-.remove-skill-btn:hover {
-    color: #ff3b30;
-    transform: rotate(90deg);
-}
-
-/* ---------- ENTRY LIST (experience / education / certificates / achievements) ---------- */
-.managed-entries-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.managed-entries-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 0.75rem;
-    padding: 0.9rem 1rem;
-    background-color: var(--background-accent);
-    border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    opacity: 0;
-    animation: fade-up 0.4s ease forwards;
-    transition: background-color 0.15s ease, opacity 0.25s ease, transform 0.25s ease, max-height 0.25s ease, margin 0.25s ease, padding 0.25s ease;
-    overflow: hidden;
-}
-
-.managed-entries-list li:hover {
-    background-color: #f0f0f2;
-}
-
-.managed-entries-list li.is-new {
-    animation: pop-in 0.35s ease forwards;
-}
-
-.managed-entries-list li.is-removing {
-    opacity: 0;
-    transform: translateX(12px);
-    max-height: 0;
-    margin: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-.entry-body { flex: 1; min-width: 0; }
-
-.entry-title {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-main);
-}
-
-.entry-subtitle {
-    font-size: 0.88rem;
-    color: var(--text-main);
-    opacity: 0.85;
-}
-
-.entry-meta {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    margin-top: 0.2rem;
-    display: block;
-}
-
-.entry-description {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-top: 0.4rem;
-    line-height: 1.45;
-}
-
-.entry-link {
-    display: inline-block;
-    margin-top: 0.4rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--primary-color);
-}
-
-.entry-link:hover { text-decoration: underline; }
-
-.empty-state {
-    font-size: 0.88rem;
-    color: var(--text-muted);
     text-align: center;
-    padding: 1.25rem 0.5rem;
-    border: 1px dashed rgba(0, 0, 0, 0.12);
-    border-radius: 8px;
-    opacity: 0;
-    animation: fade-up 0.4s ease forwards;
+    margin-top: -55px;
+    padding: 0 16px 20px;
+  }
+  .profile-avatar-container {
+    width: 100px;
+    height: 100px;
+  }
+  .profile-info-block {
+    padding-top: 10px;
+  }
+  .profile-name-row {
+    justify-content: center;
+  }
+  .connections-row {
+    justify-content: center;
+  }
+  .profile-cta-row {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .profile-cta-row button {
+    width: 100%;
+  }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .profile-card,
-    .skill-box,
-    .managed-skills-list li,
-    .managed-entries-list li,
-    .empty-state {
-        animation: none;
-        opacity: 1;
-    }
-    .remove-skill-btn:hover { transform: none; }
-    .add-skill-form input.input-error,
-    .add-entry-form input.input-error { animation: none; }
+.avatar-opt.active .avatar-opt-preview {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 12px var(--cyan);
+  transform: scale(1.1);
+}
+.avatar-opt-preview {
+  transition: all 0.2s ease;
+}
+.avatar-opt-preview:hover {
+  transform: scale(1.05);
 }

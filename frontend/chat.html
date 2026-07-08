@@ -1,117 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messages - LearnLoop</title>
-
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/chat.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages - LearnLoop</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/chat.css">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon"></span>
-                <span>Learn<span>Loop</span></span>
-            </a>
-            <nav class="nav-menu">
-                <a href="explore.html">Explore</a>
-                <a href="dashboard.html">Dashboard</a>
-                <a href="requests.html">Requests</a>
-                <a href="chat.html">Messages</a>
-            </nav>
-            <div class="nav-actions">
-                <a href="profile.html" class="dashboard-avatar" aria-label="Go to my profile">JL</a>
+  <!-- Premium Loader Screen -->
+  <div id="loader-screen">
+    <div class="loader-logo">
+      <svg viewBox="0 0 44 24" width="56" height="32" fill="none">
+        <circle cx="14" cy="12" r="8" stroke="#8b5cf6" stroke-width="3" />
+        <circle cx="27" cy="12" r="8" stroke="#94a3b8" stroke-width="3" stroke-opacity="0.8" />
+      </svg>
+      <span>LearnLoop</span>
+    </div>
+    <div class="loader-ring"></div>
+  </div>
+
+  <div class="glowing-blob blob-purple"></div>
+  <div class="glowing-blob blob-cyan"></div>
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content" style="padding: 0; height: 100vh;">
+      
+      <div class="chat-workspace">
+        
+        <!-- Chat Side (Conversations List) -->
+        <aside class="chat-sidebar glass">
+          <div class="chat-sidebar-header">
+            <h3>Direct Messages</h3>
+            <div class="sidebar-search-box">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--text-muted)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <input type="text" id="chat-search" placeholder="Search conversations...">
             </div>
-        </div>
-    </header>
-
-    <main class="chat-view">
-        <div class="chat-container">
-
-            <aside class="chat-sidebar">
-                <div class="sidebar-header">
-                    <h3>Active Loops</h3>
+          </div>
+          
+          <div class="conversations-list" id="convs-list-container">
+            <!-- Render list of chat partners -->
+          </div>
+        </aside>
+        
+        <!-- Active Chat Window -->
+        <section class="chat-main-window" id="active-chat-window">
+          
+          <!-- Default Empty state -->
+          <div class="chat-empty-state" id="chat-empty-state">
+            <svg width="48" height="48" fill="none" stroke="var(--text-muted)" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+            <h3>Select a Conversation</h3>
+            <p>Pick a matched partner from the sidebar directory to begin exchanging skills.</p>
+          </div>
+          
+          <!-- Messaging area (rendered active) -->
+          <div class="chat-active-panel" id="chat-active-panel" style="display: none;">
+            
+            <!-- Header bar -->
+            <header class="chat-active-header glass">
+              <div class="chat-active-user">
+                <div class="active-avatar" id="active-partner-avatar">
+                  <!-- Avatar -->
                 </div>
-                <div class="chat-list">
-                    <div class="chat-user-item active" data-user="sarah">
-                        <div class="chat-user-avatar">SK</div>
-                        <div class="chat-user-meta">
-                            <h4>Sarah Kapoor</h4>
-                            <p>Let's schedule our python loop!</p>
-                        </div>
-                    </div>
-                    <div class="chat-user-item" data-user="alex">
-                        <div class="chat-user-avatar">AM</div>
-                        <div class="chat-user-meta">
-                            <h4>Alex Miller</h4>
-                            <p>Thanks for the session today!</p>
-                        </div>
-                    </div>
+                <div>
+                  <h4 id="active-partner-name">Elena Rostova</h4>
+                  <span class="active-status"><span class="status-indicator"></span> Online</span>
                 </div>
-            </aside>
-
-            <section class="chat-window">
-                <div class="window-header">
-                    <div class="header-user-info">
-                        <div class="chat-user-avatar">SK</div>
-                        <div>
-                            <h4>Sarah Kapoor</h4>
-                            <p class="user-status">Online</p>
-                        </div>
-                    </div>
+              </div>
+              
+              <div class="chat-header-actions">
+                <a href="requests.html" class="btn btn-secondary btn-sm">Schedule Session</a>
+              </div>
+            </header>
+            
+            <!-- Message bubbles thread -->
+            <div class="chat-messages-thread" id="chat-messages-box">
+              <!-- Render bubbles -->
+            </div>
+            
+            <!-- typing indicator -->
+            <div class="typing-indicator-wrapper" id="typing-indicator" style="display: none;">
+              <span id="typing-username">Elena</span> is typing
+              <div class="typing-dots">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            
+            <!-- Input area panel -->
+            <footer class="chat-input-bar glass">
+              <button class="btn-input-attach" id="attach-file-btn" title="Simulate File Attachment">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
+              </button>
+              
+              <div class="chat-input-wrapper">
+                <textarea id="chat-message-input" rows="1" placeholder="Type a message..." maxlength="500"></textarea>
+                
+                <!-- Emoji trigger -->
+                <button class="btn-emoji-trigger" id="emoji-btn" title="Add Emoji">😊</button>
+                
+                <!-- Emoji drawer drop-up -->
+                <div class="emoji-drawer-popover" id="emoji-drawer">
+                  <span>😀</span><span>😂</span><span>😊</span><span>😍</span><span>👍</span><span>👏</span><span>🔥</span><span>💡</span><span>🎉</span><span>🎓</span><span>💻</span><span>🚀</span>
                 </div>
-
-                <div class="message-thread">
-                    <div class="message message-received">
-                        <p>Hey there! I saw you accepted my request to trade Python basics for UI design.</p>
-                    </div>
-                    <div class="message message-sent">
-                        <p>Yes, absolutely! I am super excited to get started on Python.</p>
-                    </div>
-                    <div class="message message-received">
-                        <p>Awesome! Let's schedule our python loop!</p>
-                    </div>
-                </div>
-
-                <form class="message-input-area">
-                    <input type="text" placeholder="Type a message to keep the loop going..." required>
-                    <button type="submit" class="btn btn-primary">Send</button>
-                </form>
-            </section>
-
-            <aside class="review-sidebar">
-                <h3>Leave a Review</h3>
-                <p>Complete your session loop by giving feedback to your partner tracker.</p>
-
-                <form class="review-form">
-                    <div class="form-group">
-                        <label for="rating-select">Select Rating</label>
-                        <select id="rating-select" class="review-dropdown" required>
-                            <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
-                            <option value="4">⭐⭐⭐⭐ 4 Stars</option>
-                            <option value="3">⭐⭐⭐ 3 Stars</option>
-                            <option value="2">⭐⭐ 2 Stars</option>
-                            <option value="1">⭐ 1 Star</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="feedback-text">Written Feedback</label>
-                        <textarea id="feedback-text" rows="3" placeholder="How did the skill exchange session go?" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">Submit Feedback</button>
-                </form>
-            </aside>
-
-        </div>
+              </div>
+              
+              <button class="btn btn-primary btn-glow btn-send-message" id="send-msg-btn">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+              </button>
+            </footer>
+            
+          </div>
+          
+        </section>
+        
+      </div>
+      
     </main>
+    
+  </div>
 
-    <footer class="footer">
-        <p>&copy; 2026 LearnLoop Platform. Built for community learning.</p>
-    </footer>
-
-    <script src="js/chat.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/chat.js"></script>
 </body>
 </html>

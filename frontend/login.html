@@ -1,63 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - LearnLoop</title>
-
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/auth.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - LearnLoop</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon"></span>
-                <span>Learn<span>Loop</span></span>
-            </a>
-            <nav class="nav-menu">
-                <a href="explore.html">Explore</a>
-                <a href="dashboard.html">Dashboard</a>
-                <a href="requests.html">Requests</a>
-                <a href="chat.html">Messages</a>
-            </nav>
-            <div class="nav-actions">
-                <a href="login.html" class="btn btn-secondary">Login</a>
-                <a href="register.html" class="btn btn-primary">Join Free</a>
-            </div>
+  <!-- Premium Loader Screen -->
+  <div id="loader-screen">
+    <div class="loader-logo">
+      <svg viewBox="0 0 44 24" width="56" height="32" fill="none">
+        <circle cx="14" cy="12" r="8" stroke="#8b5cf6" stroke-width="3" />
+        <circle cx="27" cy="12" r="8" stroke="#94a3b8" stroke-width="3" stroke-opacity="0.8" />
+      </svg>
+      <span>LearnLoop</span>
+    </div>
+    <div class="loader-ring"></div>
+  </div>
+
+  <div class="glowing-blob blob-purple"></div>
+  <div class="glowing-blob blob-cyan"></div>
+
+  <!-- Outer container centering the card -->
+  <div class="auth-wrapper">
+    <div class="auth-card-container">
+      
+      <!-- Back to Home link -->
+      <a href="index.html" class="back-home-link">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        Back to Home
+      </a>
+      
+      <!-- Login View -->
+      <div class="auth-card glass active" id="login-view">
+        <div class="auth-header">
+          <h2>Welcome Back</h2>
+          <p>Login to resume exchanging skills</p>
         </div>
-    </header>
-
-    <main class="auth-section">
-        <div class="auth-container">
-            <h2>Welcome Back</h2>
-            <p class="auth-subtitle">Log in to continue your learning loop</p>
-
-            <form class="auth-form">
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" required placeholder="name@example.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" required placeholder="••••••••">
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-full">Log In</button>
-            </form>
-
-            <p class="auth-footer">
-                Don't have an account? <a href="register.html">Sign up</a>
-            </p>
+        
+        <form id="login-form">
+          <div class="form-group-floating">
+            <input type="email" id="login-email" required placeholder=" " autocomplete="email">
+            <label for="login-email">Email Address</label>
+            <div class="input-glow"></div>
+          </div>
+          
+          <div class="form-group-floating">
+            <input type="password" id="login-password" required placeholder=" " autocomplete="current-password">
+            <label for="login-password">Password</label>
+            <div class="input-glow"></div>
+          </div>
+          
+          <div class="forgot-link-row">
+            <span class="forgot-btn clickable" id="trigger-forgot">Forgot Password?</span>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-glow btn-block">Login</button>
+        </form>
+        
+        <div class="auth-divider">
+          <span>Or sign in with</span>
         </div>
-    </main>
+        
+        <div class="social-login-grid">
+          <button class="btn btn-secondary btn-social" aria-label="Sign in with Google">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12.24 10.285V13.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.859-3.579-7.859-7.993 0-4.414 3.53-7.993 7.86-7.993 2.46 0 4.108 1.025 5.048 1.926l2.427-2.334C18.155 1.637 15.42 1 12.24 1 5.922 1 1 5.932 1 12s4.922 11 11.24 11c6.598 0 10.99-4.637 10.99-11.19 0-.752-.082-1.325-.183-1.81H12.24z"/></svg>
+          </button>
+          <button class="btn btn-secondary btn-social" aria-label="Sign in with GitHub">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z" clip-rule="evenodd"/></svg>
+          </button>
+        </div>
+        
+        <p class="auth-switch">Don't have an account? <a href="register.html">Sign Up</a></p>
+      </div>
 
-    <footer class="footer">
-        <p>&copy; 2026 LearnLoop Platform. Built for community learning.</p>
-    </footer>
+      <!-- Forgot Password View (Hidden by default, slides in) -->
+      <div class="auth-card glass" id="forgot-view">
+        <div class="auth-header">
+          <h2>Reset Password</h2>
+          <p>Enter email to receive recovery instructions</p>
+        </div>
+        
+        <form id="forgot-form">
+          <div class="form-group-floating">
+            <input type="email" id="forgot-email" required placeholder=" ">
+            <label for="forgot-email">Email Address</label>
+            <div class="input-glow"></div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-glow btn-block">Send Reset Link</button>
+        </form>
+        
+        <p class="auth-switch">Remember your credentials? <span class="clickable" id="trigger-login">Back to Login</span></p>
+      </div>
+      
+    </div>
+  </div>
 
-    <script src="js/auth.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>
