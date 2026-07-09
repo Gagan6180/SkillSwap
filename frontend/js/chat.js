@@ -48,11 +48,12 @@ function initializeConversations() {
 
   matchedPartners.forEach(p => {
     if (!chats.some(c => c.partnerId === p.id)) {
+      const curFirstName = (currentUser && currentUser.name) ? currentUser.name.split(" ")[0] : "there";
       chats.push({
         id: "chat-" + p.id,
         partnerId: p.id,
         messages: [
-          { sender: p.id, text: `Hi ${currentUser.name.split(" ")[0]}! Ready to exchange our skills? Let me know when you'd like to talk.`, time: "Yesterday", status: "read" }
+          { sender: p.id, text: `Hi ${curFirstName}! Ready to exchange our skills? Let me know when you'd like to talk.`, time: "Yesterday", status: "read" }
         ]
       });
     }
@@ -92,7 +93,7 @@ function renderConversationsSidebar(partnersList) {
 
     container.innerHTML += `
       <div class="conv-item ${isActive}" data-id="${p.id}">
-        <div class="conv-avatar online">${p.avatar}</div>
+        <div class="conv-avatar online">${getAvatarHTML(p)}</div>
         <div class="conv-details">
           <div class="conv-name-row">
             <span class="conv-name">${p.name}</span>
@@ -147,7 +148,7 @@ function selectConversation(partnerId) {
   const partner = users.find(u => u.id === partnerId);
   if (!partner) return;
 
-  document.getElementById("active-partner-avatar").innerHTML = partner.avatar;
+  document.getElementById("active-partner-avatar").innerHTML = getAvatarHTML(partner);
   document.getElementById("active-partner-name").textContent = partner.name;
 
   const chats = db.getData("ll_chats");
@@ -214,41 +215,56 @@ function setupChatInputs() {
   if (!input || !sendBtn) return;
 
   const sendMessage = () => {
-    const val = input.value.trim();
-    if (!val || !activePartnerId) return;
+    try {
+      const val = input.value.trim();
+      if (!val || !activePartnerId) return;
 
-    const chats = db.getData("ll_chats");
-    const cRecord = chats.find(c => c.partnerId === activePartnerId);
-    if (!cRecord) return;
-
-    const msgTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const newMsg = {
-      sender: "current-user",
-      text: val,
-      time: msgTime,
-      status: "sent"
-    };
-
-    cRecord.messages.push(newMsg);
-    db.saveData("ll_chats", chats);
-
-    input.value = "";
-    renderMessagesThread();
-    
-    const users = db.getData("ll_users");
-    const matchedPartners = [];
-    db.getData("ll_requests").forEach(r => {
-      if (r.status === "Accepted") {
-        const pId = r.senderId === db.getCurrentUser().id ? r.receiverId : r.senderId;
-        const partnerObj = users.find(u => u.id === pId);
-        if (partnerObj && !matchedPartners.some(p => p.id === partnerObj.id)) {
-          matchedPartners.push(partnerObj);
-        }
+      const chats = db.getData("ll_chats");
+      let cRecord = chats.find(c => c.partnerId === activePartnerId);
+      
+      // Defensive check: create record if it does not exist
+      if (!cRecord) {
+        cRecord = {
+          id: "chat-" + activePartnerId,
+          partnerId: activePartnerId,
+          messages: []
+        };
+        chats.push(cRecord);
       }
-    });
-    renderConversationsSidebar(matchedPartners);
 
-    triggerBotReply(activePartnerId, val);
+      const msgTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const newMsg = {
+        sender: "current-user",
+        text: val,
+        time: msgTime,
+        status: "sent"
+      };
+
+      cRecord.messages.push(newMsg);
+      db.saveData("ll_chats", chats);
+
+      input.value = "";
+      renderMessagesThread();
+      
+      const users = db.getData("ll_users");
+      const matchedPartners = [];
+      const currentUser = db.getCurrentUser();
+      const currentUserId = currentUser ? currentUser.id : "";
+      db.getData("ll_requests").forEach(r => {
+        if (r.status === "Accepted") {
+          const pId = r.senderId === currentUserId ? r.receiverId : r.senderId;
+          const partnerObj = users.find(u => u.id === pId);
+          if (partnerObj && !matchedPartners.some(p => p.id === partnerObj.id)) {
+            matchedPartners.push(partnerObj);
+          }
+        }
+      });
+      renderConversationsSidebar(matchedPartners);
+
+      triggerBotReply(activePartnerId, val);
+    } catch (err) {
+      console.error("Error sending message:", err);
+    }
   };
 
   sendBtn.addEventListener("click", sendMessage);
@@ -266,7 +282,7 @@ function triggerBotReply(partnerId, userMessageText) {
 
   const users = db.getData("ll_users");
   const partner = users.find(u => u.id === partnerId);
-  const pName = partner ? partner.name.split(" ")[0] : "Elena";
+  const pName = (partner && partner.name) ? partner.name.split(" ")[0] : "Elena";
 
   setTimeout(() => {
     const typingBox = document.getElementById("typing-indicator");
@@ -316,13 +332,16 @@ function triggerBotReply(partnerId, userMessageText) {
         db.saveData("ll_chats", chats);
         renderMessagesThread();
       } else {
-        showToast(`New message from ${partner.name}: "${replyText.substring(0, 30)}..."`, "info");
+        const partnerNameStr = partner ? partner.name : "Partner";
+        showToast(`New message from ${partnerNameStr}: "${replyText.substring(0, 30)}..."`, "info");
       }
 
       const matchedPartners = [];
+      const currentUser = db.getCurrentUser();
+      const currentUserId = currentUser ? currentUser.id : "";
       db.getData("ll_requests").forEach(r => {
         if (r.status === "Accepted") {
-          const pId = r.senderId === db.getCurrentUser().id ? r.receiverId : r.senderId;
+          const pId = r.senderId === currentUserId ? r.receiverId : r.senderId;
           const partnerObj = users.find(u => u.id === pId);
           if (partnerObj && !matchedPartners.some(p => p.id === partnerObj.id)) {
             matchedPartners.push(partnerObj);

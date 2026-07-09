@@ -156,7 +156,7 @@ class LearnLoopDB {
           requestId: "req-2",
           partnerId: "user-3",
           partnerName: "Sarah Jenkins",
-          date: new Date(Date.now() + 3600000 * 48).toISOString().split('T')[0],
+          date: new Date().toISOString().split('T')[0],
           time: "15:00",
           timezone: "GMT+1",
           topic: "HTML/CSS Basics for Beginners",
@@ -668,15 +668,15 @@ function getSidebarHTML(activePage) {
           </a>
         </li>
       </ul>
-      <div class="sidebar-footer">
-        <div class="sidebar-user">
-          <div class="sidebar-user-avatar">${getAvatarHTML(user)}</div>
-          <div class="sidebar-user-info">
-            <span class="sidebar-user-name">${user.name}</span>
-            <span class="sidebar-user-role">Member</span>
+      <div class="sidebar-footer" style="display:flex; align-items:center; justify-content:space-between; width:100%; gap:8px;">
+        <a href="profile.html" class="sidebar-user" style="display:flex; align-items:center; gap:12px; text-decoration:none; flex-grow:1; min-width:0;">
+          <div class="sidebar-user-avatar" style="flex-shrink:0;">${getAvatarHTML(user)}</div>
+          <div class="sidebar-user-info" style="display:flex; flex-direction:column; overflow:hidden;">
+            <span class="sidebar-user-name" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-weight:600; color:var(--text-primary); font-size:13.5px;">${user.name}</span>
+            <span class="sidebar-user-role" style="font-size:11.5px; color:var(--text-muted);">View Profile</span>
           </div>
-        </div>
-        <button class="btn btn-icon theme-toggle clickable" aria-label="Toggle Theme">${getSunIcon()}</button>
+        </a>
+        <button class="btn btn-icon theme-toggle clickable" aria-label="Toggle Theme" style="flex-shrink:0;">${getSunIcon()}</button>
       </div>
     </aside>
   `;

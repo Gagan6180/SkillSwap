@@ -195,7 +195,7 @@ function renderChatsList() {
     container.innerHTML += `
       <a href="chat.html?partner=${partner.id}" class="msg-item">
         <div class="msg-avatar">
-          ${partner.avatar}
+          ${getAvatarHTML(partner)}
           <div class="status-dot"></div>
         </div>
         <div class="msg-info">

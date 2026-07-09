@@ -104,7 +104,7 @@ function renderMatches() {
         
         <div class="match-card-top">
           <div class="match-user-details">
-            <div class="match-avatar">${partner.avatar}</div>
+            <div class="match-avatar">${getAvatarHTML(partner)}</div>
             <div class="match-name-location">
               <h4>${partner.name}</h4>
               <p>${partner.location}</p>

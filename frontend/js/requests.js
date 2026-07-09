@@ -28,6 +28,14 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCalendarNav();
   setupBookingModalEvents();
   setupReviewModalEvents();
+
+  // Pending review trigger from call.html redirect
+  const pendingReviewId = localStorage.getItem("ll_review_pending_session_id");
+  if (pendingReviewId) {
+    localStorage.removeItem("ll_review_pending_session_id");
+    openReviewModal(pendingReviewId);
+    showToast("Welcome back! Please write a review for your completed session.", "info");
+  }
 });
 
 function formatDateKey(dateObj) {
@@ -92,7 +100,7 @@ function renderRequests() {
         incomingDiv.innerHTML += `
           <div class="req-item-card glass">
             <div class="req-card-top">
-              <div class="req-avatar">${sender.avatar}</div>
+              <div class="req-avatar">${getAvatarHTML(sender)}</div>
               <div class="req-user-info">
                 <h5>${sender.name}</h5>
                 <p>Location: ${sender.location} &bull; Rating: ★${sender.rating.toFixed(1)}</p>
@@ -142,7 +150,7 @@ function renderRequests() {
         outgoingDiv.innerHTML += `
           <div class="req-item-card glass">
             <div class="req-card-top">
-              <div class="req-avatar">${receiver.avatar}</div>
+              <div class="req-avatar">${getAvatarHTML(receiver)}</div>
               <div class="req-user-info">
                 <h5>Proposal to: ${receiver.name}</h5>
                 <p>Location: ${receiver.location}</p>
@@ -191,7 +199,7 @@ function renderRequests() {
         historyDiv.innerHTML += `
           <div class="req-item-card glass" style="opacity: 0.85;">
             <div class="req-card-top">
-              <div class="req-avatar">${partner.avatar}</div>
+              <div class="req-avatar">${getAvatarHTML(partner)}</div>
               <div class="req-user-info">
                 <h5>${partner.name}</h5>
                 <p>Barter Scope: ${roleStr}</p>
@@ -394,9 +402,10 @@ function renderAgenda(dateStr) {
     let actionBtn = "";
     if (s.status === "Upcoming") {
       actionBtn = `
-        <div class="req-actions-row" style="margin-top: 10px;">
+        <div class="req-actions-row" style="margin-top: 10px; display: flex; gap: 8px;">
           <button class="btn btn-secondary btn-sm cancel-session-btn" data-id="${s.id}">Cancel</button>
           <button class="btn btn-primary btn-sm complete-session-btn" data-id="${s.id}">Complete & Rate</button>
+          <a href="call.html?partner=${s.partnerId}&session=${s.id}" class="btn btn-glow btn-sm join-call-btn" style="background:#10b981; color:#fff; border-color:#10b981; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; padding: 6px 12px; border-radius: 8px;">Join Call</a>
         </div>
       `;
     } else {

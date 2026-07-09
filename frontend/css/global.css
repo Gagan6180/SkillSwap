@@ -690,6 +690,18 @@ body {
   align-items: center;
   gap: 12px;
   overflow: hidden;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.sidebar-user:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .sidebar-user:hover {
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
 .sidebar-user img {
@@ -1123,8 +1135,14 @@ body {
 }
 
 #loader-screen.hidden {
+  display: flex !important;
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .loader-logo {
