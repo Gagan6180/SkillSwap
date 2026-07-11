@@ -13,7 +13,7 @@ module.exports = (io, socket) => {
             }
 
             // Only accepted swaps can chat
-            if (request.status !== "Accepted") {
+            if (request.status.toLowerCase() !== "accepted") {
                 return socket.emit("errorMessage", "Chat is not available.");
             }
 

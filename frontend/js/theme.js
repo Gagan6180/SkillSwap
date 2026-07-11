@@ -2,11 +2,31 @@
 
 // Global Badges Directory
 var BADGES_LIST = [
-  { name: "Top Teacher", icon: "🏅", desc: "Completed 5+ teaching sessions with a rating >= 4.8" },
-  { name: "Active Learner", icon: "🚀", desc: "Registered and started learning on LearnLoop" },
-  { name: "Community Helper", icon: "🤝", desc: "Exchanged skills with 3+ different users" },
-  { name: "Skill Master", icon: "🎓", desc: "Added 3+ Expert level skills to your offering list" },
-  { name: "Knowledge Contributor", icon: "💡", desc: "Submitted detailed feedback review on matches" }
+  {
+    name: "Top Teacher",
+    icon: "🏅",
+    desc: "Completed 5+ teaching sessions with a rating >= 4.8",
+  },
+  {
+    name: "Active Learner",
+    icon: "🚀",
+    desc: "Registered and started learning on LearnLoop",
+  },
+  {
+    name: "Community Helper",
+    icon: "🤝",
+    desc: "Exchanged skills with 3+ different users",
+  },
+  {
+    name: "Skill Master",
+    icon: "🎓",
+    desc: "Added 3+ Expert level skills to your offering list",
+  },
+  {
+    name: "Knowledge Contributor",
+    icon: "💡",
+    desc: "Submitted detailed feedback review on matches",
+  },
 ];
 
 // Mock Users Database
@@ -14,24 +34,25 @@ const MOCK_USERS = [
   {
     id: "user-1",
     name: "Elena Rostova",
-    headline: "Senior Product Designer & Design Systems Lead | Open to exchange",
+    headline:
+      "Senior Product Designer & Design Systems Lead | Open to exchange",
     avatar: `<svg viewBox="0 0 100 100" class="avatar-svg"><defs><linearGradient id="av-1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EC4899" /><stop offset="100%" stop-color="#8B5CF6" /></linearGradient></defs><circle cx="50" cy="50" r="50" fill="url(#av-1)"/><text x="50" y="58" font-size="28" font-weight="700" fill="#FFF" text-anchor="middle">ER</text></svg>`,
     bio: "Product designer and design systems architect. Love crafting clean user interfaces and interactive prototypes. Looking to learn backend development.",
     location: "Prague, Czech Republic",
     skillsOffered: [
       { name: "UI/UX Design", level: "Expert", endorsements: 12 },
       { name: "Figma", level: "Expert", endorsements: 15 },
-      { name: "Interaction Design", level: "Intermediate", endorsements: 6 }
+      { name: "Interaction Design", level: "Intermediate", endorsements: 6 },
     ],
     skillsWanted: [
       { name: "Node.js", level: "Beginner" },
-      { name: "Python", level: "Beginner" }
+      { name: "Python", level: "Beginner" },
     ],
     rating: 4.9,
     reviewsCount: 18,
     exchangesCompleted: 12,
     badges: ["Top Teacher", "Skill Master"],
-    availability: "Weekends & Evenings"
+    availability: "Weekends & Evenings",
   },
   {
     id: "user-2",
@@ -43,17 +64,17 @@ const MOCK_USERS = [
     skillsOffered: [
       { name: "Python", level: "Expert", endorsements: 18 },
       { name: "Data Science", level: "Expert", endorsements: 14 },
-      { name: "SQL", level: "Intermediate", endorsements: 9 }
+      { name: "SQL", level: "Intermediate", endorsements: 9 },
     ],
     skillsWanted: [
       { name: "Public Speaking", level: "Beginner" },
-      { name: "Spanish", level: "Intermediate" }
+      { name: "Spanish", level: "Intermediate" },
     ],
     rating: 4.8,
     reviewsCount: 22,
     exchangesCompleted: 15,
     badges: ["Top Teacher", "Knowledge Contributor"],
-    availability: "Weekdays 6 PM - 9 PM"
+    availability: "Weekdays 6 PM - 9 PM",
   },
   {
     id: "user-3",
@@ -65,17 +86,17 @@ const MOCK_USERS = [
     skillsOffered: [
       { name: "Public Speaking", level: "Expert", endorsements: 11 },
       { name: "Business English", level: "Expert", endorsements: 16 },
-      { name: "Communication", level: "Expert", endorsements: 13 }
+      { name: "Communication", level: "Expert", endorsements: 13 },
     ],
     skillsWanted: [
       { name: "HTML/CSS", level: "Beginner" },
-      { name: "Figma", level: "Intermediate" }
+      { name: "Figma", level: "Intermediate" },
     ],
     rating: 5.0,
     reviewsCount: 14,
     exchangesCompleted: 9,
     badges: ["Community Helper", "Top Teacher"],
-    availability: "Flexible Schedule"
+    availability: "Flexible Schedule",
   },
   {
     id: "user-4",
@@ -87,17 +108,17 @@ const MOCK_USERS = [
     skillsOffered: [
       { name: "Node.js", level: "Expert", endorsements: 22 },
       { name: "JavaScript", level: "Expert", endorsements: 18 },
-      { name: "MongoDB", level: "Intermediate", endorsements: 11 }
+      { name: "MongoDB", level: "Intermediate", endorsements: 11 },
     ],
     skillsWanted: [
       { name: "UI/UX Design", level: "Beginner" },
-      { name: "Interaction Design", level: "Intermediate" }
+      { name: "Interaction Design", level: "Intermediate" },
     ],
     rating: 4.7,
     reviewsCount: 26,
     exchangesCompleted: 19,
     badges: ["Skill Master", "Active Learner"],
-    availability: "Mondays & Fridays"
+    availability: "Mondays & Fridays",
   },
   {
     id: "user-5",
@@ -108,18 +129,18 @@ const MOCK_USERS = [
     location: "Barcelona, Spain",
     skillsOffered: [
       { name: "Spanish", level: "Expert", endorsements: 8 },
-      { name: "Language Practice", level: "Expert", endorsements: 10 }
+      { name: "Language Practice", level: "Expert", endorsements: 10 },
     ],
     skillsWanted: [
       { name: "Python", level: "Beginner" },
-      { name: "JavaScript", level: "Beginner" }
+      { name: "JavaScript", level: "Beginner" },
     ],
     rating: 4.9,
     reviewsCount: 11,
     exchangesCompleted: 8,
     badges: ["Community Helper", "Knowledge Contributor"],
-    availability: "Weekdays Afternoon"
-  }
+    availability: "Weekdays Afternoon",
+  },
 ];
 
 class LearnLoopDB {
@@ -130,95 +151,151 @@ class LearnLoopDB {
   init() {
     if (!localStorage.getItem("ll_initialized")) {
       localStorage.setItem("ll_users", JSON.stringify(MOCK_USERS));
-      localStorage.setItem("ll_requests", JSON.stringify([
-        {
-          id: "req-1",
-          senderId: "user-1",
-          receiverId: "current-user",
-          skillOffered: "UI/UX Design",
-          skillWanted: "Node.js",
-          status: "Pending",
-          timestamp: new Date(Date.now() - 3600000 * 2).toISOString()
-        },
-        {
-          id: "req-2",
-          senderId: "user-3",
-          receiverId: "current-user",
-          skillOffered: "Public Speaking",
-          skillWanted: "HTML/CSS",
-          status: "Accepted",
-          timestamp: new Date(Date.now() - 3600000 * 24).toISOString()
-        }
-      ]));
-      localStorage.setItem("ll_sessions", JSON.stringify([
-        {
-          id: "sess-1",
-          requestId: "req-2",
-          partnerId: "user-3",
-          partnerName: "Sarah Jenkins",
-          date: new Date().toISOString().split('T')[0],
-          time: "15:00",
-          timezone: "GMT+1",
-          topic: "HTML/CSS Basics for Beginners",
-          status: "Upcoming"
-        },
-        {
-          id: "sess-2",
-          requestId: "req-mock-old",
-          partnerId: "user-2",
-          partnerName: "Kai Tanaka",
-          date: new Date(Date.now() - 3600000 * 72).toISOString().split('T')[0],
-          time: "18:00",
-          timezone: "GMT+9",
-          topic: "Python loops and data analysis",
-          status: "Completed",
-          reviewed: true
-        }
-      ]));
-      localStorage.setItem("ll_chats", JSON.stringify([
-        {
-          id: "chat-user-3",
-          partnerId: "user-3",
-          messages: [
-            { sender: "user-3", text: "Hi! I saw you are looking to learn Public Speaking.", time: "10:30 AM", status: "read" },
-            { sender: "current-user", text: "Yes, that's correct! And I can help you with HTML/CSS.", time: "10:32 AM", status: "read" },
-            { sender: "user-3", text: "Awesome! Let's arrange our first session on the Calendar. I sent an exchange request.", time: "10:35 AM", status: "read" }
-          ]
-        }
-      ]));
-      localStorage.setItem("ll_notifications", JSON.stringify([
-        { id: "notif-1", type: "request", text: "Elena Rostova sent you a skill exchange request.", time: "2 hours ago", unread: true },
-        { id: "notif-2", type: "session", text: "Upcoming session scheduled with Sarah Jenkins.", time: "1 day ago", unread: false }
-      ]));
-      localStorage.setItem("ll_reviews", JSON.stringify([
-        { id: "rev-1", userId: "current-user", authorName: "Kai Tanaka", rating: 5, text: "Excellent teacher! Explained HTML & CSS concepts with real world layouts. Highly recommended.", date: "3 days ago" }
-      ]));
-      
+      localStorage.setItem(
+        "ll_requests",
+        JSON.stringify([
+          {
+            id: "req-1",
+            senderId: "user-1",
+            receiverId: "current-user",
+            skillOffered: "UI/UX Design",
+            skillWanted: "Node.js",
+            status: "Pending",
+            timestamp: new Date(Date.now() - 3600000 * 2).toISOString(),
+          },
+          {
+            id: "req-2",
+            senderId: "user-3",
+            receiverId: "current-user",
+            skillOffered: "Public Speaking",
+            skillWanted: "HTML/CSS",
+            status: "Accepted",
+            timestamp: new Date(Date.now() - 3600000 * 24).toISOString(),
+          },
+        ]),
+      );
+      localStorage.setItem(
+        "ll_sessions",
+        JSON.stringify([
+          {
+            id: "sess-1",
+            requestId: "req-2",
+            partnerId: "user-3",
+            partnerName: "Sarah Jenkins",
+            date: new Date().toISOString().split("T")[0],
+            time: "15:00",
+            timezone: "GMT+1",
+            topic: "HTML/CSS Basics for Beginners",
+            status: "Upcoming",
+          },
+          {
+            id: "sess-2",
+            requestId: "req-mock-old",
+            partnerId: "user-2",
+            partnerName: "Kai Tanaka",
+            date: new Date(Date.now() - 3600000 * 72)
+              .toISOString()
+              .split("T")[0],
+            time: "18:00",
+            timezone: "GMT+9",
+            topic: "Python loops and data analysis",
+            status: "Completed",
+            reviewed: true,
+          },
+        ]),
+      );
+      localStorage.setItem(
+        "ll_chats",
+        JSON.stringify([
+          {
+            id: "chat-user-3",
+            partnerId: "user-3",
+            messages: [
+              {
+                sender: "user-3",
+                text: "Hi! I saw you are looking to learn Public Speaking.",
+                time: "10:30 AM",
+                status: "read",
+              },
+              {
+                sender: "current-user",
+                text: "Yes, that's correct! And I can help you with HTML/CSS.",
+                time: "10:32 AM",
+                status: "read",
+              },
+              {
+                sender: "user-3",
+                text: "Awesome! Let's arrange our first session on the Calendar. I sent an exchange request.",
+                time: "10:35 AM",
+                status: "read",
+              },
+            ],
+          },
+        ]),
+      );
+      localStorage.setItem(
+        "ll_notifications",
+        JSON.stringify([
+          {
+            id: "notif-1",
+            type: "request",
+            text: "Elena Rostova sent you a skill exchange request.",
+            time: "2 hours ago",
+            unread: true,
+          },
+          {
+            id: "notif-2",
+            type: "session",
+            text: "Upcoming session scheduled with Sarah Jenkins.",
+            time: "1 day ago",
+            unread: false,
+          },
+        ]),
+      );
+      localStorage.setItem(
+        "ll_reviews",
+        JSON.stringify([
+          {
+            id: "rev-1",
+            userId: "current-user",
+            authorName: "Kai Tanaka",
+            rating: 5,
+            text: "Excellent teacher! Explained HTML & CSS concepts with real world layouts. Highly recommended.",
+            date: "3 days ago",
+          },
+        ]),
+      );
+
       // Initialize Community Photo Sharing posts
-      localStorage.setItem("ll_posts", JSON.stringify([
-        {
-          id: "post-1",
-          authorName: "Sarah Jenkins",
-          authorHeadline: "Keynote Speaker & Business English Coach",
-          authorAvatar: `<svg viewBox="0 0 100 100" class="avatar-svg"><defs><linearGradient id="av-3-p" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#10B981" /><stop offset="100%" stop-color="#3B82F6" /></linearGradient></defs><circle cx="50" cy="50" r="50" fill="url(#av-3-p)"/><text x="50" y="58" font-size="28" font-weight="700" fill="#FFF" text-anchor="middle">SJ</text></svg>`,
-          caption: "Just completed an amazing public speaking swap on LearnLoop! Elena gave me great notes on CSS grids, and I helped her structure her keynote pitch. Truly a community of builders. 💡🎨",
-          photoType: "study", // study workspace SVG
-          timestamp: "2 hours ago",
-          likes: 8,
-          likedBy: []
-        },
-        {
-          id: "post-2",
-          authorName: "Elena Rostova",
-          authorHeadline: "Senior Product Designer & Design Systems Lead",
-          authorAvatar: `<svg viewBox="0 0 100 100" class="avatar-svg"><defs><linearGradient id="av-1-p" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EC4899" /><stop offset="100%" stop-color="#8B5CF6" /></linearGradient></defs><circle cx="50" cy="50" r="50" fill="url(#av-1-p)"/><text x="50" y="58" font-size="28" font-weight="700" fill="#FFF" text-anchor="middle">ER</text></svg>`,
-          caption: "Successfully unlocked the 'Top Teacher' badge today! Over 12 skill exchanges completed. Thank you to everyone for the endorsements! 📜🏆",
-          photoType: "certificate", // certificate medal SVG
-          timestamp: "1 day ago",
-          likes: 15,
-          likedBy: []
-        }
-      ]));
+      localStorage.setItem(
+        "ll_posts",
+        JSON.stringify([
+          {
+            id: "post-1",
+            authorName: "Sarah Jenkins",
+            authorHeadline: "Keynote Speaker & Business English Coach",
+            authorAvatar: `<svg viewBox="0 0 100 100" class="avatar-svg"><defs><linearGradient id="av-3-p" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#10B981" /><stop offset="100%" stop-color="#3B82F6" /></linearGradient></defs><circle cx="50" cy="50" r="50" fill="url(#av-3-p)"/><text x="50" y="58" font-size="28" font-weight="700" fill="#FFF" text-anchor="middle">SJ</text></svg>`,
+            caption:
+              "Just completed an amazing public speaking swap on LearnLoop! Elena gave me great notes on CSS grids, and I helped her structure her keynote pitch. Truly a community of builders. 💡🎨",
+            photoType: "study", // study workspace SVG
+            timestamp: "2 hours ago",
+            likes: 8,
+            likedBy: [],
+          },
+          {
+            id: "post-2",
+            authorName: "Elena Rostova",
+            authorHeadline: "Senior Product Designer & Design Systems Lead",
+            authorAvatar: `<svg viewBox="0 0 100 100" class="avatar-svg"><defs><linearGradient id="av-1-p" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EC4899" /><stop offset="100%" stop-color="#8B5CF6" /></linearGradient></defs><circle cx="50" cy="50" r="50" fill="url(#av-1-p)"/><text x="50" y="58" font-size="28" font-weight="700" fill="#FFF" text-anchor="middle">ER</text></svg>`,
+            caption:
+              "Successfully unlocked the 'Top Teacher' badge today! Over 12 skill exchanges completed. Thank you to everyone for the endorsements! 📜🏆",
+            photoType: "certificate", // certificate medal SVG
+            timestamp: "1 day ago",
+            likes: 15,
+            likedBy: [],
+          },
+        ]),
+      );
 
       localStorage.setItem("ll_initialized", "true");
     }
@@ -233,15 +310,17 @@ class LearnLoopDB {
   }
 
   getCurrentUser() {
-    return JSON.parse(localStorage.getItem("ll_current_user"));
+    return JSON.parse(sessionStorage.getItem("ll_current_user"));
   }
 
   setCurrentUser(user) {
-    localStorage.setItem("ll_current_user", JSON.stringify(user));
+    sessionStorage.setItem("ll_current_user", JSON.stringify(user));
   }
 
   logout() {
-    localStorage.removeItem("ll_current_user");
+    sessionStorage.removeItem("ll_current_user");
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("token");
     window.location.href = "login.html";
   }
 }
@@ -258,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupDropdowns();
   setupBackToTop();
   setupMobileToggle();
-  
+
   // Hide loader
   const loader = document.getElementById("loader-screen");
   if (loader) {
@@ -272,10 +351,10 @@ document.addEventListener("DOMContentLoaded", () => {
 function showToast(message, type = "info") {
   const container = document.getElementById("toast-container");
   if (!container) return;
-  
+
   const toast = document.createElement("div");
   toast.className = `toast toast-${type} glass`;
-  
+
   let icon = "";
   if (type === "success") {
     icon = `<svg width="18" height="18" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -284,21 +363,22 @@ function showToast(message, type = "info") {
   } else {
     icon = `<svg width="18" height="18" fill="none" stroke="#06B6D4" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   }
-  
+
   toast.innerHTML = `
     ${icon}
     <div class="toast-text">${message}</div>
     <div class="toast-close">&times;</div>
   `;
-  
+
   container.appendChild(toast);
-  
+
   toast.querySelector(".toast-close").addEventListener("click", () => {
     toast.remove();
   });
-  
+
   setTimeout(() => {
-    toast.style.animation = "slideDown 0.3s forwards, fadeIn 0.3s reverse forwards";
+    toast.style.animation =
+      "slideDown 0.3s forwards, fadeIn 0.3s reverse forwards";
     setTimeout(() => toast.remove(), 300);
   }, 4000);
 }
@@ -309,32 +389,35 @@ function setupCustomCursor() {
   cursor.id = "custom-cursor";
   const cursorRing = document.createElement("div");
   cursorRing.id = "custom-cursor-ring";
-  
+
   document.body.appendChild(cursor);
   document.body.appendChild(cursorRing);
-  
-  let mouseX = 0, mouseY = 0;
-  let ringX = 0, ringY = 0;
-  
+
+  let mouseX = 0,
+    mouseY = 0;
+  let ringX = 0,
+    ringY = 0;
+
   document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
     cursor.style.left = mouseX + "px";
     cursor.style.top = mouseY + "px";
   });
-  
+
   function animateRing() {
     const ease = 0.15;
     ringX += (mouseX - ringX) * ease;
     ringY += (mouseY - ringY) * ease;
-    
+
     cursorRing.style.left = ringX + "px";
     cursorRing.style.top = ringY + "px";
     requestAnimationFrame(animateRing);
   }
   animateRing();
-  
-  const hoverElements = "a, button, .clickable, .btn, .glass-card, input, select, textarea";
+
+  const hoverElements =
+    "a, button, .clickable, .btn, .glass-card, input, select, textarea";
   document.addEventListener("mouseover", (e) => {
     if (e.target.closest(hoverElements)) {
       cursor.style.width = "12px";
@@ -345,7 +428,7 @@ function setupCustomCursor() {
       cursorRing.style.borderColor = "rgba(124, 58, 237, 0.6)";
     }
   });
-  
+
   document.addEventListener("mouseout", (e) => {
     if (e.target.closest(hoverElements)) {
       cursor.style.width = "8px";
@@ -363,9 +446,10 @@ function setupScrollProgress() {
   const progress = document.createElement("div");
   progress.id = "scroll-progress";
   document.body.appendChild(progress);
-  
+
   window.addEventListener("scroll", () => {
-    const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const totalScroll =
+      document.documentElement.scrollHeight - window.innerHeight;
     if (totalScroll > 0) {
       const percentage = (window.pageYOffset / totalScroll) * 100;
       progress.style.width = percentage + "%";
@@ -383,8 +467,9 @@ function setupTheme() {
 }
 
 function renderThemeIcons() {
-  const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
-  document.querySelectorAll(".theme-toggle").forEach(btn => {
+  const currentTheme =
+    document.documentElement.getAttribute("data-theme") || "dark";
+  document.querySelectorAll(".theme-toggle").forEach((btn) => {
     btn.innerHTML = currentTheme === "dark" ? getSunIcon() : getMoonIcon();
   });
 }
@@ -398,7 +483,10 @@ document.addEventListener("click", (e) => {
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("ll_theme", newTheme);
     renderThemeIcons();
-    showToast(`${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)} Mode activated!`, "info");
+    showToast(
+      `${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)} Mode activated!`,
+      "info",
+    );
   }
 });
 
@@ -414,7 +502,7 @@ function getMoonIcon() {
 function setupNavbarScroll() {
   const nav = document.querySelector(".navbar");
   if (!nav) return;
-  
+
   window.addEventListener("scroll", () => {
     if (window.scrollY > 40) {
       nav.classList.add("scrolled");
@@ -439,22 +527,22 @@ function setupDropdowns() {
   const notifDropdown = document.querySelector(".notification-dropdown");
   const avatarTrigger = document.querySelector(".avatar-trigger");
   const userDropdown = document.querySelector(".user-dropdown");
-  
+
   if (notifTrigger && notifDropdown) {
     notifTrigger.addEventListener("click", (e) => {
       e.stopPropagation();
       notifDropdown.classList.toggle("active");
       if (userDropdown) userDropdown.classList.remove("active");
-      
+
       const badge = notifTrigger.querySelector(".bell-badge");
       if (badge) badge.style.display = "none";
-      
+
       const notifs = db.getData("ll_notifications");
-      notifs.forEach(n => n.unread = false);
+      notifs.forEach((n) => (n.unread = false));
       db.saveData("ll_notifications", notifs);
     });
   }
-  
+
   if (avatarTrigger && userDropdown) {
     avatarTrigger.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -462,27 +550,27 @@ function setupDropdowns() {
       if (notifDropdown) notifDropdown.classList.remove("active");
     });
   }
-  
+
   window.addEventListener("click", () => {
     if (notifDropdown) notifDropdown.classList.remove("active");
     if (userDropdown) userDropdown.classList.remove("active");
   });
-  
+
   renderNotifications();
 }
 
 function renderNotifications() {
   const list = document.getElementById("notifications-list");
   if (!list) return;
-  
+
   const notifications = db.getData("ll_notifications");
   if (notifications.length === 0) {
     list.innerHTML = `<div class="dropdown-header" style="text-align:center; padding: 24px 0; color:var(--text-muted);">No new notifications</div>`;
     return;
   }
-  
+
   list.innerHTML = "";
-  notifications.forEach(n => {
+  notifications.forEach((n) => {
     let iconStr = "";
     if (n.type === "chat") {
       iconStr = `<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>`;
@@ -491,9 +579,9 @@ function renderNotifications() {
     } else {
       iconStr = `<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>`;
     }
-    
+
     list.innerHTML += `
-      <div class="notif-item ${n.unread ? 'unread' : ''}">
+      <div class="notif-item ${n.unread ? "unread" : ""}">
         <div class="notif-icon">${iconStr}</div>
         <div class="notif-content">
           <div class="notif-text">${n.text}</div>
@@ -510,9 +598,9 @@ function setupBackToTop() {
   btn.id = "back-to-top";
   btn.className = "btn btn-icon btn-primary glass-card";
   btn.innerHTML = `<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>`;
-  
+
   document.body.appendChild(btn);
-  
+
   window.addEventListener("scroll", () => {
     if (window.scrollY > 400) {
       btn.classList.add("visible");
@@ -520,7 +608,7 @@ function setupBackToTop() {
       btn.classList.remove("visible");
     }
   });
-  
+
   btn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
@@ -531,7 +619,7 @@ function setupMobileToggle() {
   const toggle = document.querySelector(".mobile-nav-toggle");
   const navLinks = document.querySelector(".nav-links");
   const sidebar = document.querySelector(".sidebar");
-  
+
   if (toggle && navLinks) {
     toggle.addEventListener("click", () => {
       navLinks.classList.toggle("active");
@@ -542,7 +630,12 @@ function setupMobileToggle() {
 
 function getAvatarHTML(user, className = "avatar-img") {
   if (!user) return "";
-  if (user.avatar && (user.avatar.startsWith("http") || user.avatar.includes(".") || user.avatar.startsWith("data:image"))) {
+  if (
+    user.avatar &&
+    (user.avatar.startsWith("http") ||
+      user.avatar.includes(".") ||
+      user.avatar.startsWith("data:image"))
+  ) {
     return `<img src="${user.avatar}" class="${className}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;" alt="${user.name}">`;
   }
   if (user.avatar && user.avatar.startsWith("<svg")) {
@@ -555,15 +648,15 @@ function getAvatarHTML(user, className = "avatar-img") {
 function getGlobalNavbarHTML(activePage) {
   const user = db.getCurrentUser();
   const notifs = db.getData("ll_notifications");
-  const hasUnread = notifs.some(n => n.unread);
-  
+  const hasUnread = notifs.some((n) => n.unread);
+
   let rightSide = "";
   if (user) {
     rightSide = `
       <div class="user-menu-wrapper">
         <div class="notification-bell btn-icon clickable">
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-          ${hasUnread ? '<div class="bell-badge"></div>' : ''}
+          ${hasUnread ? '<div class="bell-badge"></div>' : ""}
         </div>
         <div class="avatar-trigger clickable">${getAvatarHTML(user)}</div>
         <div class="dropdown-menu user-dropdown glass">
@@ -593,7 +686,7 @@ function getGlobalNavbarHTML(activePage) {
       <a href="register.html" class="btn btn-primary btn-glow">Get Started</a>
     `;
   }
-  
+
   return `
     <nav class="navbar glass">
       <a href="index.html" class="logo">
@@ -604,9 +697,9 @@ function getGlobalNavbarHTML(activePage) {
         <span>LearnLoop</span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html" class="nav-link ${activePage === 'landing' ? 'active' : ''}">Home</a></li>
-        <li><a href="explore.html" class="nav-link ${activePage === 'explore' ? 'active' : ''}">Explore Skills</a></li>
-        ${user ? `<li><a href="dashboard.html" class="nav-link ${activePage === 'dashboard' ? 'active' : ''}">Dashboard</a></li>` : ''}
+        <li><a href="index.html" class="nav-link ${activePage === "landing" ? "active" : ""}">Home</a></li>
+        <li><a href="explore.html" class="nav-link ${activePage === "explore" ? "active" : ""}">Explore Skills</a></li>
+        ${user ? `<li><a href="dashboard.html" class="nav-link ${activePage === "dashboard" ? "active" : ""}">Dashboard</a></li>` : ""}
       </ul>
       <div class="nav-actions">
         <button class="btn btn-icon theme-toggle clickable" aria-label="Toggle Theme">${getMoonIcon()}</button>
@@ -620,7 +713,7 @@ function getGlobalNavbarHTML(activePage) {
 function getSidebarHTML(activePage) {
   const user = db.getCurrentUser();
   if (!user) return "";
-  
+
   return `
     <aside class="sidebar">
       <a href="index.html" class="sidebar-logo">
@@ -631,37 +724,37 @@ function getSidebarHTML(activePage) {
         <span>LearnLoop</span>
       </a>
       <ul class="sidebar-menu">
-        <li class="sidebar-item ${activePage === 'dashboard' ? 'active' : ''}">
+        <li class="sidebar-item ${activePage === "dashboard" ? "active" : ""}">
           <a href="dashboard.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
             Dashboard
           </a>
         </li>
-        <li class="sidebar-item ${activePage === 'feed' ? 'active' : ''}">
+        <li class="sidebar-item ${activePage === "feed" ? "active" : ""}">
           <a href="feed.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             Community Feed
           </a>
         </li>
-        <li class="sidebar-item ${activePage === 'explore' ? 'active' : ''}">
+        <li class="sidebar-item ${activePage === "explore" ? "active" : ""}">
           <a href="explore.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
             Find Partners
           </a>
         </li>
-        <li class="sidebar-item ${activePage === 'requests' ? 'active' : ''}">
+        <li class="sidebar-item ${activePage === "requests" ? "active" : ""}">
           <a href="requests.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             Requests & Calendar
           </a>
         </li>
-        <li class="sidebar-item ${activePage === 'chat' ? 'active' : ''}">
+        <li class="sidebar-item ${activePage === "chat" ? "active" : ""}">
           <a href="chat.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
             Messaging
           </a>
         </li>
-        <li class="sidebar-item ${activePage === 'profile' ? 'active' : ''}">
+        <li class="sidebar-item ${activePage === "profile" ? "active" : ""}">
           <a href="profile.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
             My Profile
@@ -683,7 +776,11 @@ function getSidebarHTML(activePage) {
 }
 
 function getDemoAvatar(name) {
-  const init = name.split(" ").map(n => n[0]).join("").toUpperCase();
+  const init = name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase();
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient></defs><circle cx="50" cy="50" r="50" fill="url(#g)"/><text x="50" y="58" font-size="28" font-weight="700" fill="#FFF" text-anchor="middle">${init}</text></svg>`;
 }
 
@@ -691,7 +788,8 @@ function getDemoAvatar(name) {
 function forceAuth() {
   const user = db.getCurrentUser();
   if (!user) {
-    window.location.href = "login.html?redirect=" + encodeURIComponent(window.location.pathname);
+    window.location.href =
+      "login.html?redirect=" + encodeURIComponent(window.location.pathname);
   }
 }
 

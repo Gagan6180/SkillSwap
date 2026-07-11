@@ -7,12 +7,12 @@ module.exports = (io, socket) => {
       const { requestId, message } = data;
 
       const request = await getRequestById(requestId);
-
+      console.log("sendMessage requestId:", requestId, "status:", JSON.stringify(request?.status));
       if (!request) {
         return socket.emit("errorMessage", "Swap request not found.");
       }
 
-      if (request.status !== "Accepted") {
+      if (request.status.toLowerCase() !== "accepted") {
         return socket.emit("errorMessage", "Chat not available.");
       }
 
@@ -33,9 +33,9 @@ module.exports = (io, socket) => {
       await saveMessage(requestId, senderId, receiverId, message);
 
       io.to(`request_${requestId}`).emit("newMessage", {
-        requestId,
-        senderId,
-        receiverId,
+        request_id: requestId,
+        sender_id: senderId,
+        receiver_id: receiverId,
         message,
         created_at: new Date(),
       });

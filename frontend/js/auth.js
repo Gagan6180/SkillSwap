@@ -1,3 +1,4 @@
+
 // LearnLoop Authentication Logic
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -120,11 +121,36 @@ if (loginForm) {
       }
 
       // Save JWT
-      localStorage.setItem("token", data.token);
+      sessionStorage.setItem("token", data.token);
 
       // Save logged in user
-      localStorage.setItem("user", JSON.stringify(data.user));
+      sessionStorage.setItem("user", JSON.stringify(data.user));
 
+      // Link backend identity to the local profile used across the app
+      let localProfile = JSON.parse(sessionStorage.getItem("ll_current_user"));
+if (!localProfile || localProfile.backendId !== data.user.id) {
+  const initials = data.user.full_name.split(" ").map(n => n[0]).slice(0, 2).join("").toUpperCase();
+  localProfile = {
+    id: "user-" + data.user.id,
+    name: data.user.full_name,
+    headline: "Member at LearnLoop | Ready to barter skills",
+    bio: "",
+    location: "Global citizen",
+    avatar: `<svg viewBox="0 0 100 100" class="avatar-svg"><defs><linearGradient id="av-${data.user.id}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4F46E5" /><stop offset="100%" stop-color="#7C3AED" /></linearGradient></defs><circle cx="50" cy="50" r="50" fill="url(#av-${data.user.id})"/><text x="50" y="58" font-size="28" font-weight="700" fill="#FFF" text-anchor="middle">${initials}</text></svg>`,
+    skillsOffered: [],
+    skillsWanted: [],
+    rating: 5,
+    reviewsCount: 0,
+    exchangesCompleted: 0,
+    badges: [],
+    availability: "Flexible Schedule"
+  };
+}
+localProfile.backendId = data.user.id;
+sessionStorage.setItem("ll_current_user", JSON.stringify(localProfile));
+      
+      
+      
       showToast("Login successful!", "success");
 
       const params = new URLSearchParams(window.location.search);

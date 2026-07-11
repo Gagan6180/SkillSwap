@@ -9,10 +9,6 @@ const {
     getChatHistory
 } = require("../controllers/chatController");
 
-router.get(
-    "/:requestId",
-    authMiddleware,
-    getChatHistory
-);
+router.get("/:requestId",authMiddleware,getChatHistory);
 
 module.exports = router;

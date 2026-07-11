@@ -2,7 +2,7 @@ const API_URL = "http://localhost:5009/api";
 
 async function getConversations() {
 
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
 
     const response = await fetch(
         `${API_URL}/swap/conversations`,
