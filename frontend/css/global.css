@@ -1406,3 +1406,8 @@ body {
     padding: 0;
   }
 }
+
+/* Hide the theme toggle button globally */
+.theme-toggle-btn, .theme-toggle {
+  display: none !important;
+}
