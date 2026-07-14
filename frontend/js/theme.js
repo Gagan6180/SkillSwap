@@ -30,118 +30,7 @@ var BADGES_LIST = [
 ];
 
 // Mock Users Database
-const MOCK_USERS = [
-  {
-    id: "user-1",
-    name: "Elena Rostova",
-    headline:
-      "Senior Product Designer & Design Systems Lead | Open to exchange",
-    avatar: `<svg viewBox="0 0 100 100" class="avatar-svg"><defs><linearGradient id="av-1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EC4899" /><stop offset="100%" stop-color="#8B5CF6" /></linearGradient></defs><circle cx="50" cy="50" r="50" fill="url(#av-1)"/><text x="50" y="58" font-size="28" font-weight="700" fill="#FFF" text-anchor="middle">ER</text></svg>`,
-    bio: "Product designer and design systems architect. Love crafting clean user interfaces and interactive prototypes. Looking to learn backend development.",
-    location: "Prague, Czech Republic",
-    skillsOffered: [
-      { name: "UI/UX Design", level: "Expert", endorsements: 12 },
-      { name: "Figma", level: "Expert", endorsements: 15 },
-      { name: "Interaction Design", level: "Intermediate", endorsements: 6 },
-    ],
-    skillsWanted: [
-      { name: "Node.js", level: "Beginner" },
-      { name: "Python", level: "Beginner" },
-    ],
-    rating: 4.9,
-    reviewsCount: 18,
-    exchangesCompleted: 12,
-    badges: ["Top Teacher", "Skill Master"],
-    availability: "Weekends & Evenings",
-  },
-  {
-    id: "user-2",
-    name: "Kai Tanaka",
-    headline: "Data Scientist & Python Automation Architect",
-    avatar: `<svg viewBox="0 0 100 100" class="avatar-svg"><defs><linearGradient id="av-2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3B82F6" /><stop offset="100%" stop-color="#06B6D4" /></linearGradient></defs><circle cx="50" cy="50" r="50" fill="url(#av-2)"/><text x="50" y="58" font-size="28" font-weight="700" fill="#FFF" text-anchor="middle">KT</text></svg>`,
-    bio: "Python developer specialized in data science, machine learning, and automation. Keen to learn creative copywriting and speaking.",
-    location: "Tokyo, Japan",
-    skillsOffered: [
-      { name: "Python", level: "Expert", endorsements: 18 },
-      { name: "Data Science", level: "Expert", endorsements: 14 },
-      { name: "SQL", level: "Intermediate", endorsements: 9 },
-    ],
-    skillsWanted: [
-      { name: "Public Speaking", level: "Beginner" },
-      { name: "Spanish", level: "Intermediate" },
-    ],
-    rating: 4.8,
-    reviewsCount: 22,
-    exchangesCompleted: 15,
-    badges: ["Top Teacher", "Knowledge Contributor"],
-    availability: "Weekdays 6 PM - 9 PM",
-  },
-  {
-    id: "user-3",
-    name: "Sarah Jenkins",
-    headline: "Keynote Speaker & Business English Coach",
-    avatar: `<svg viewBox="0 0 100 100" class="avatar-svg"><defs><linearGradient id="av-3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#10B981" /><stop offset="100%" stop-color="#3B82F6" /></linearGradient></defs><circle cx="50" cy="50" r="50" fill="url(#av-3)"/><text x="50" y="58" font-size="28" font-weight="700" fill="#FFF" text-anchor="middle">SJ</text></svg>`,
-    bio: "Professional public speaker and communication coach. I help founders structure pitch decks and deliver clear keynotes. Eager to master HTML/CSS.",
-    location: "London, UK",
-    skillsOffered: [
-      { name: "Public Speaking", level: "Expert", endorsements: 11 },
-      { name: "Business English", level: "Expert", endorsements: 16 },
-      { name: "Communication", level: "Expert", endorsements: 13 },
-    ],
-    skillsWanted: [
-      { name: "HTML/CSS", level: "Beginner" },
-      { name: "Figma", level: "Intermediate" },
-    ],
-    rating: 5.0,
-    reviewsCount: 14,
-    exchangesCompleted: 9,
-    badges: ["Community Helper", "Top Teacher"],
-    availability: "Flexible Schedule",
-  },
-  {
-    id: "user-4",
-    name: "Devon Harris",
-    headline: "Backend Engineer | Node.js, Express & MongoDB Developer",
-    avatar: `<svg viewBox="0 0 100 100" class="avatar-svg"><defs><linearGradient id="av-4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F59E0B" /><stop offset="100%" stop-color="#EF4444" /></linearGradient></defs><circle cx="50" cy="50" r="50" fill="url(#av-4)"/><text x="50" y="58" font-size="28" font-weight="700" fill="#FFF" text-anchor="middle">DH</text></svg>`,
-    bio: "Full stack JavaScript developer. Specialised in Node.js, Express, MongoDB, and system architecture. Looking to pick up graphic design skills.",
-    location: "Austin, USA",
-    skillsOffered: [
-      { name: "Node.js", level: "Expert", endorsements: 22 },
-      { name: "JavaScript", level: "Expert", endorsements: 18 },
-      { name: "MongoDB", level: "Intermediate", endorsements: 11 },
-    ],
-    skillsWanted: [
-      { name: "UI/UX Design", level: "Beginner" },
-      { name: "Interaction Design", level: "Intermediate" },
-    ],
-    rating: 4.7,
-    reviewsCount: 26,
-    exchangesCompleted: 19,
-    badges: ["Skill Master", "Active Learner"],
-    availability: "Mondays & Fridays",
-  },
-  {
-    id: "user-5",
-    name: "Amara Okafor",
-    headline: "Spanish Language Tutor & Translation Specialist",
-    avatar: `<svg viewBox="0 0 100 100" class="avatar-svg"><defs><linearGradient id="av-5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8B5CF6" /><stop offset="100%" stop-color="#EC4899" /></linearGradient></defs><circle cx="50" cy="50" r="50" fill="url(#av-5)"/><text x="50" y="58" font-size="28" font-weight="700" fill="#FFF" text-anchor="middle">AO</text></svg>`,
-    bio: "Certified Spanish teacher and translator. Love exploring cultures and food. Want to learn Python for scripting and simple automation.",
-    location: "Barcelona, Spain",
-    skillsOffered: [
-      { name: "Spanish", level: "Expert", endorsements: 8 },
-      { name: "Language Practice", level: "Expert", endorsements: 10 },
-    ],
-    skillsWanted: [
-      { name: "Python", level: "Beginner" },
-      { name: "JavaScript", level: "Beginner" },
-    ],
-    rating: 4.9,
-    reviewsCount: 11,
-    exchangesCompleted: 8,
-    badges: ["Community Helper", "Knowledge Contributor"],
-    availability: "Weekdays Afternoon",
-  },
-];
+const MOCK_USERS = [];
 
 class LearnLoopDB {
   constructor() {
@@ -150,7 +39,7 @@ class LearnLoopDB {
 
   init() {
     if (!localStorage.getItem("ll_initialized")) {
-      localStorage.setItem("ll_users", JSON.stringify(MOCK_USERS));
+      localStorage.setItem("ll_users", JSON.stringify([]));
       localStorage.setItem(
         "ll_requests",
         JSON.stringify([
@@ -323,6 +212,32 @@ class LearnLoopDB {
     sessionStorage.removeItem("token");
     window.location.href = "login.html";
   }
+
+  async fetchActualUsers() {
+    try {
+      const res = await fetch("http://localhost:5009/api/users/all");
+      if (!res.ok) return;
+      const json = await res.json();
+      if (json && json.success && Array.isArray(json.data)) {
+        const realUsers = json.data;
+        this.saveData("ll_users", realUsers);
+
+        const current = this.getCurrentUser();
+        if (current) {
+          const myRealUser = realUsers.find(
+            (u) => u.backendId === current.backendId || u.id === current.id
+          );
+          if (myRealUser) {
+            const updatedProfile = { ...current, ...myRealUser };
+            sessionStorage.setItem("ll_current_user", JSON.stringify(updatedProfile));
+          }
+        }
+        window.dispatchEvent(new CustomEvent("ll_users_updated"));
+      }
+    } catch (err) {
+      console.error("Could not fetch actual users from backend:", err);
+    }
+  }
 }
 
 const db = new LearnLoopDB();
@@ -337,6 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupDropdowns();
   setupBackToTop();
   setupMobileToggle();
+  db.fetchActualUsers();
 
   // Hide loader
   const loader = document.getElementById("loader-screen");
@@ -754,9 +670,7 @@ function getGlobalNavbarHTML(activePage) {
 function getSidebarHTML(activePage) {
   const user = db.getCurrentUser();
   if (!user) return "";
-  
   const isCollapsed = localStorage.getItem("ll_sidebar_collapsed") === "true";
-  
   return `
     <!-- Mobile Header Bar -->
     <div class="mobile-header-bar">
@@ -850,6 +764,8 @@ function forceAuth() {
   if (!user) {
     window.location.href =
       "login.html?redirect=" + encodeURIComponent(window.location.pathname);
+  } else {
+    db.fetchActualUsers();
   }
 }
 
@@ -868,5 +784,22 @@ document.addEventListener("click", (e) => {
       sidebar.classList.toggle("collapsed");
       localStorage.setItem("ll_sidebar_collapsed", isCollapsed ? "true" : "false");
     }
+  }
+
+  // Mobile sidebar toggle click
+  const mobileToggleBtn = e.target.closest("#mobile-sidebar-toggle");
+  if (mobileToggleBtn) {
+    const sidebar = document.querySelector(".sidebar");
+    const overlay = document.querySelector("#sidebar-overlay");
+    if (sidebar) sidebar.classList.toggle("active");
+    if (overlay) overlay.classList.toggle("active");
+  }
+
+  // Close sidebar when clicking overlay
+  if (e.target.closest("#sidebar-overlay")) {
+    const sidebar = document.querySelector(".sidebar");
+    const overlay = document.querySelector("#sidebar-overlay");
+    if (sidebar) sidebar.classList.remove("active");
+    if (overlay) overlay.classList.remove("active");
   }
 });
