@@ -9,12 +9,12 @@
   --teal: #14B8A6;
   --white: #ffffff;
   --slate-gray: #64748B;
-  
+
   /* Gradient Combinations */
   --grad-primary: linear-gradient(135deg, var(--indigo) 0%, var(--purple) 100%);
   --grad-cyan-teal: linear-gradient(135deg, var(--cyan) 0%, var(--teal) 100%);
   --grad-glowing: linear-gradient(90deg, var(--indigo), var(--purple), var(--cyan), var(--teal), var(--indigo));
-  
+
   /* Theme-Dependent Variables (Dark Mode Default) */
   --bg-primary: #080c14;
   --bg-secondary: #0f172a;
@@ -31,10 +31,10 @@
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.6);
   --input-bg: rgba(15, 23, 42, 0.8);
-  
+
   --logo-purple: #818cf8;
   --logo-grey: #cbd5e1;
-  
+
   --font-sans: 'Outfit', sans-serif;
   --navbar-height: 76px;
   --sidebar-width: 260px;
@@ -56,58 +56,118 @@
   --shadow-md: 0 4px 20px rgba(148, 163, 184, 0.12);
   --shadow-lg: 0 10px 30px rgba(148, 163, 184, 0.15);
   --input-bg: rgba(255, 255, 255, 0.9);
-  
+
   --logo-purple: #4f46e5;
   --logo-grey: #334155;
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes scaleUp {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 @keyframes pulseGlow {
-  0% { box-shadow: 0 0 10px rgba(124, 58, 237, 0.2); }
-  50% { box-shadow: 0 0 25px rgba(124, 58, 237, 0.4); }
-  100% { box-shadow: 0 0 10px rgba(124, 58, 237, 0.2); }
+  0% {
+    box-shadow: 0 0 10px rgba(124, 58, 237, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.4);
+  }
+
+  100% {
+    box-shadow: 0 0 10px rgba(124, 58, 237, 0.2);
+  }
 }
 
 @keyframes gradientPan {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes ringRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 /* General Layout Setup */
@@ -137,14 +197,17 @@ body {
   width: 8px;
   height: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-primary);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--bg-tertiary);
   border-radius: 10px;
   border: 2px solid var(--bg-primary);
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--purple);
 }
@@ -202,7 +265,9 @@ body {
 
 /* Hide custom cursor on mobile */
 @media (max-width: 1024px) {
-  #custom-cursor, #custom-cursor-ring {
+
+  #custom-cursor,
+  #custom-cursor-ring {
     display: none !important;
   }
 }
@@ -358,6 +423,7 @@ body {
   background: rgba(0, 0, 0, 0.03);
   border: 1px solid var(--border-color);
 }
+
 [data-theme="light"] .btn-secondary:hover {
   background: rgba(0, 0, 0, 0.06);
 }
@@ -409,6 +475,7 @@ body {
 [data-theme="light"] .btn-icon {
   background: rgba(0, 0, 0, 0.03);
 }
+
 [data-theme="light"] .btn-icon:hover {
   background: rgba(0, 0, 0, 0.08);
 }
@@ -454,7 +521,8 @@ body {
   transform: scale(1.1);
 }
 
-.avatar-trigger svg, .avatar-trigger img {
+.avatar-trigger svg,
+.avatar-trigger img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -474,7 +542,8 @@ body {
   flex-shrink: 0;
 }
 
-.sidebar-user-avatar svg, .sidebar-user-avatar img {
+.sidebar-user-avatar svg,
+.sidebar-user-avatar img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -789,6 +858,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 [data-theme="light"] .page-title h1 {
   background: linear-gradient(90deg, var(--text-primary), var(--slate-gray));
   -webkit-background-clip: text;
@@ -870,6 +940,7 @@ body {
   background: rgba(16, 185, 129, 0.15);
   border: 1px solid rgba(16, 185, 129, 0.2);
 }
+
 .toast-success::before {
   background: #10b981;
 }
@@ -878,6 +949,7 @@ body {
   background: rgba(239, 68, 68, 0.15);
   border: 1px solid rgba(239, 68, 68, 0.2);
 }
+
 .toast-error::before {
   background: #ef4444;
 }
@@ -886,6 +958,7 @@ body {
   background: rgba(6, 182, 212, 0.15);
   border: 1px solid rgba(6, 182, 212, 0.2);
 }
+
 .toast-info::before {
   background: var(--cyan);
 }
@@ -1217,6 +1290,7 @@ body {
 .mobile-header-bar {
   display: none;
 }
+
 .sidebar-overlay {
   display: none;
 }
@@ -1226,9 +1300,11 @@ body {
   .navbar {
     padding: 0 20px;
   }
+
   .mobile-nav-toggle {
     display: block;
   }
+
   .nav-links {
     position: fixed;
     top: var(--navbar-height);
@@ -1243,26 +1319,31 @@ body {
     transition: left 0.4s ease;
     border-top: 1px solid var(--border-color);
   }
+
   .nav-links.active {
     left: 0;
   }
+
   .footer-grid {
     grid-template-columns: 1fr;
   }
+
   .footer-bottom {
     flex-direction: column;
     gap: 16px;
     text-align: center;
   }
-  
+
   /* Sidebar for logged-in pages mobile support */
   .sidebar {
     left: -100%;
     transition: left 0.3s ease;
   }
+
   .sidebar.active {
     left: 0;
   }
+
   .main-content {
     margin-left: 0;
     padding: 24px 16px;
@@ -1285,7 +1366,7 @@ body {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
-  
+
   .mobile-sidebar-toggle {
     background: none;
     border: none;
@@ -1296,7 +1377,7 @@ body {
     justify-content: center;
     padding: 4px;
   }
-  
+
   .mobile-logo-text {
     font-size: 18px;
     font-weight: 800;
@@ -1305,7 +1386,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  
+
   [data-theme="light"] .mobile-logo-text {
     background: linear-gradient(90deg, var(--indigo) 0%, var(--purple) 100%);
     -webkit-background-clip: text;
@@ -1334,7 +1415,7 @@ body {
     pointer-events: none;
     transition: opacity 0.3s ease;
   }
-  
+
   .sidebar-overlay.active {
     opacity: 1;
     pointer-events: auto;
@@ -1358,16 +1439,17 @@ body {
 
 /* Desktop Collapsed Sidebar Styles */
 @media (min-width: 769px) {
+
   /* Layout constraints when collapsed */
   .sidebar-collapsed .sidebar {
     width: 80px;
     padding: 24px 12px;
   }
-  
+
   .sidebar-collapsed .main-content {
     margin-left: 80px;
   }
-  
+
   /* Hide text content, keep icons */
   .sidebar.collapsed .logo-name,
   .sidebar.collapsed .sidebar-item a span,
@@ -1375,13 +1457,13 @@ body {
   .sidebar.collapsed .sidebar-footer {
     display: none;
   }
-  
+
   .sidebar.collapsed .sidebar-item a {
     justify-content: center;
     padding: 12px;
     gap: 0;
   }
-  
+
   .sidebar.collapsed .sidebar-user {
     justify-content: center;
     padding: 6px;
@@ -1398,7 +1480,7 @@ body {
   .sidebar.collapsed #desktop-sidebar-collapse-btn {
     transform: rotate(180deg);
   }
-  
+
   /* Center collapse button in collapsed header */
   .sidebar.collapsed .sidebar-header {
     flex-direction: column;
@@ -1408,6 +1490,7 @@ body {
 }
 
 /* Hide the theme toggle button globally */
-.theme-toggle-btn, .theme-toggle {
+.theme-toggle-btn,
+.theme-toggle {
   display: none !important;
 }

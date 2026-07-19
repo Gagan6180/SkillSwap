@@ -478,8 +478,8 @@ function setupScrollProgress() {
 
 // Light & Dark theme toggle
 function setupTheme() {
-  const savedTheme = localStorage.getItem("ll_theme") || "dark";
-  document.documentElement.setAttribute("data-theme", savedTheme);
+  document.documentElement.setAttribute("data-theme", "light");
+  localStorage.setItem("ll_theme", "light");
   renderThemeIcons();
   setupFavicon();
 
@@ -512,19 +512,13 @@ function renderThemeIcons() {
   });
 }
 
-// Global Event Delegation for Theme Toggles
+// Global Event Delegation for Theme Toggles (Disabled - Light Mode Only)
 document.addEventListener("click", (e) => {
   const btn = e.target.closest(".theme-toggle");
   if (btn) {
-    const currentTheme = document.documentElement.getAttribute("data-theme");
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("ll_theme", newTheme);
-    renderThemeIcons();
-    showToast(
-      `${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)} Mode activated!`,
-      "info",
-    );
+    // Force light mode theme lock
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("ll_theme", "light");
   }
 });
 
