@@ -353,6 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupDropdowns();
   setupBackToTop();
   setupMobileToggle();
+  setupStatsCounter();
   db.fetchActualUsers();
 
   // Hide loader
@@ -898,3 +899,49 @@ document.addEventListener("click", (e) => {
     if (overlay) overlay.classList.remove("active");
   }
 });
+
+// Dynamic counter animation for stats
+function setupStatsCounter() {
+  const statNumbers = document.querySelectorAll(".stat-number");
+  if (!statNumbers.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.getAttribute("data-target"));
+          const isDecimal = el.getAttribute("data-decimal") === "true";
+          const duration = 2000; // 2 seconds animation
+          const startTime = performance.now();
+
+          const animate = (currentTime) => {
+            const elapsedTime = currentTime - startTime;
+            const progress = Math.min(elapsedTime / duration, 1);
+            
+            // Easing out cubic
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            const currentValue = progress === 1 ? target : target * easeProgress;
+
+            if (isDecimal) {
+              el.textContent = currentValue.toFixed(1);
+            } else {
+              const roundedValue = Math.floor(currentValue);
+              el.textContent = roundedValue.toLocaleString() + "+";
+            }
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          };
+
+          requestAnimationFrame(animate);
+          obs.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  statNumbers.forEach((el) => observer.observe(el));
+}
