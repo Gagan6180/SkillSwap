@@ -345,6 +345,7 @@ const db = new LearnLoopDB();
 
 // 2. Global DOM Initializations (Custom Cursor, Scroll Progress, Theme Toggles)
 document.addEventListener("DOMContentLoaded", () => {
+  setupSaaSBackground();
   setupCustomCursor();
   setupScrollProgress();
   setupTheme();
@@ -944,4 +945,24 @@ function setupStatsCounter() {
   );
 
   statNumbers.forEach((el) => observer.observe(el));
+}
+
+// Dynamic clean light background engine
+function setupSaaSBackground() {
+  // Check if background container already exists
+  if (document.querySelector(".light-saas-bg")) return;
+
+  const bg = document.createElement("div");
+  bg.className = "light-saas-bg";
+
+  const orb1 = document.createElement("div");
+  orb1.className = "saas-bg-orb saas-orb-1";
+
+  const orb2 = document.createElement("div");
+  orb2.className = "saas-bg-orb saas-orb-2";
+
+  bg.appendChild(orb1);
+  bg.appendChild(orb2);
+
+  document.body.prepend(bg);
 }
