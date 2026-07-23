@@ -151,7 +151,7 @@ function setupProfileModalEvents() {
   closeBtn.addEventListener("click", closeModal);
   cancelBtn.addEventListener("click", closeModal);
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const user = db.getCurrentUser();
     
@@ -164,9 +164,44 @@ function setupProfileModalEvents() {
     // Save custom banner URL
     user.banner = document.getElementById("edit-banner-url").value.trim() || "";
 
+    const avatarFile = document.getElementById("edit-avatar-file").files[0];
+    let fileUploadedUrl = null;
+
+    if (avatarFile) {
+      try {
+        const formData = new FormData();
+        formData.append("image", avatarFile);
+        const token = sessionStorage.getItem("token");
+
+        showToast("Uploading profile picture...", "info");
+
+        const res = await fetch("http://localhost:5009/api/users/profile-picture", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          },
+          body: formData
+        });
+
+        const data = await res.json();
+        if (data.success && data.profile_picture) {
+          fileUploadedUrl = data.profile_picture;
+          // Clear the file input for next time
+          document.getElementById("edit-avatar-file").value = "";
+        } else {
+          showToast(data.message || "Failed to upload picture", "error");
+        }
+      } catch (err) {
+        console.error("Image upload failed:", err);
+        showToast("Error uploading profile picture", "error");
+      }
+    }
+
     // Save custom avatar picture URL or generate SVG stops
     const avatarUrl = document.getElementById("edit-avatar-url").value.trim();
-    if (avatarUrl) {
+    if (fileUploadedUrl) {
+      user.avatar = fileUploadedUrl;
+    } else if (avatarUrl) {
       user.avatar = avatarUrl;
     } else {
       const colorVal = document.querySelector('input[name="edit-avatar-color"]:checked').value;
@@ -549,16 +584,37 @@ function renderProfileBadges() {
 }
 
 // Render Recommendations & Reviews
-function renderProfileReviews() {
+async function renderProfileReviews() {
   const listDiv = document.getElementById("profile-reviews-list");
   if (!listDiv) return;
 
-  const reviews = db.getData("ll_reviews");
+  const user = db.getCurrentUser();
+  if (!user) return;
+  const backendId = user.backendId || (user.id && user.id.startsWith("user-") ? user.id.replace("user-", "") : user.id);
+
+  let reviews = [];
+  try {
+    const res = await fetch(`http://localhost:5009/api/reviews/user/${backendId}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && data.reviews) {
+        reviews = data.reviews.map(r => ({
+          id: r.review_id,
+          rating: parseInt(r.rating),
+          text: r.comment,
+          authorName: r.reviewer_name,
+          date: new Date(r.created_at).toLocaleDateString()
+        }));
+      }
+    }
+  } catch (err) {
+    console.error("Error fetching reviews from backend:", err);
+  }
   
   if (reviews.length === 0) {
     listDiv.innerHTML = `<div class="empty-state" style="padding:12px 0; color:var(--text-muted);"><p>No recommendation feedback logged yet.</p></div>`;
-    document.getElementById("avg-rating-value").textContent = "5.0 / 5.0";
-    document.getElementById("avg-stars-container").textContent = "★★★★★";
+    document.getElementById("avg-rating-value").textContent = "0.0 / 5.0";
+    document.getElementById("avg-stars-container").textContent = "☆☆☆☆☆";
     document.getElementById("rating-review-count").textContent = "0";
     return;
   }
