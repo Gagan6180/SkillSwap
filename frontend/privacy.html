@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Learnova</title>
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    .legal-container {
+      max-width: 800px;
+      margin: 120px auto 60px;
+      padding: 0 20px;
+    }
+
+    .legal-card {
+      padding: 48px;
+    }
+
+    .legal-card h1 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--indigo) 0%, var(--purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .legal-meta {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    .legal-content h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 28px;
+      margin-bottom: 12px;
+    }
+
+    .legal-content p,
+    .legal-content li {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .legal-content ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      color: var(--indigo);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+      transition: transform 0.2s ease;
+    }
+
+    .back-home:hover {
+      transform: translateX(-4px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- Content -->
+  <div class="legal-container">
+    <a href="index.html" class="back-home">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Back to Home
+    </a>
+
+    <div class="glass-card legal-card">
+      <h1>Privacy Policy</h1>
+      <div class="legal-meta">Effective Date: July 2026</div>
+
+      <div class="legal-content">
+        <p>Learnova values your privacy and is committed to protecting your personal information.</p>
+
+        <h3>1. Information We Collect</h3>
+        <p><strong>Account Information:</strong> We collect your full name, email address, password (securely hashed),
+          bio, location, and timezone settings.</p>
+        <p><strong>Profile Information:</strong> We store your profile pictures, lists of skills offered, skills wanted,
+          skill descriptions, and proficiency levels.</p>
+        <p><strong>Community Content:</strong> We store posts, achievement images, comments, likes, reviews, and ratings
+          published by users.</p>
+        <p><strong>Exchange Data:</strong> To facilitate learning exchanges, we store exchange requests, request status,
+          meeting-related information, and request messages.</p>
+        <p><strong>Communication Data:</strong> We store direct messages and notification records. We do not record or
+          store audio/video calls conducted outside the platform.</p>
+
+        <h3>2. Authentication & Security</h3>
+        <p>Passwords are never stored in plain text and are securely hashed before storage. Authentication is managed
+          securely using JSON Web Tokens (JWT).</p>
+
+        <h3>3. Media Storage</h3>
+        <p>Profile pictures and community images are securely stored using Cloudinary, a trusted third-party cloud
+          storage provider. These images are used only for displaying user profiles and community posts.</p>
+
+        <h3>4. How We Use Your Information</h3>
+        <p>Your information is used to: create your account, match users based on skills, display public profiles,
+          process exchange requests, enable messaging, send notifications, display community content, calculate ratings,
+          and improve platform performance.</p>
+
+        <h3>5. Reviews and Ratings</h3>
+        <p>Reviews submitted by users become part of the reviewed user's public profile. Average ratings are calculated
+          from all submitted reviews.</p>
+
+        <h3>6. Notifications</h3>
+        <p>Learnova stores notification records for exchange requests, likes, comments, reviews, and other platform
+          activities to keep users informed.</p>
+
+        <h3>7. Data Sharing</h3>
+        <p>Learnova does not sell, rent, or share your personal data with advertising companies. Information is shared
+          only when necessary to operate the platform or comply with legal obligations.</p>
+
+        <h3>8. Third-Party Services</h3>
+        <p>Learnova uses trusted third-party services, including Cloudinary for secure storage of uploaded images. These
+          providers only process data necessary for delivering platform functionality.</p>
+
+        <h3>9. Cookies & Local Storage</h3>
+        <p>Learnova may use browser storage technologies (such as Local Storage) to keep users signed in, store
+          authentication tokens, and improve user experience.</p>
+
+        <h3>10. Data Security</h3>
+        <p>We take reasonable measures to protect user information, including password hashing, secure authentication,
+          access controls, and protected database connections. However, no online system can guarantee absolute
+          security.</p>
+
+        <h3>11. Data Retention</h3>
+        <p>We retain user information only as long as necessary to operate the platform or comply with legal
+          obligations.</p>
+
+        <h3>12. Account Deletion</h3>
+        <p>Users may request deletion of their account. Upon deletion, personal profile information will be removed.
+          Certain community content may remain in anonymized form where necessary to preserve discussions or platform
+          integrity.</p>
+
+        <h3>13. Children's Privacy</h3>
+        <p>Learnova is not intended for children under the minimum legal age in their jurisdiction. We do not knowingly
+          collect personal information from children.</p>
+
+        <h3>14. Changes to This Privacy Policy</h3>
+        <p>This Privacy Policy may be updated periodically. Continued use of Learnova after updates indicates acceptance
+          of the revised policy.</p>
+
+        <h3>15. Contact</h3>
+        <p>If you have questions regarding these Terms or Privacy Policy, please contact the Learnova development team
+          through the contact information provided within the application.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/database.js"></script>
+  <script src="js/theme.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const navContainer = document.getElementById("navbar-container");
+      if (navContainer) {
+        navContainer.innerHTML = getGlobalNavbarHTML("");
+        setupDropdowns();
+      }
+    });
+  </script>
+</body>
+
+</html>
